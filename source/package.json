@@ -1,0 +1,50 @@
+{
+  "name": "kingtable",
+  "version": "2.0.0",
+  "description": "Table widget for administrative tables that are able to build themselves, on the basis of their input data.",
+  "private": true,
+  "scripts": {
+    "dev": "./node_modules/.bin/gulp dev",
+    "test": "./node_modules/.bin/gulp unit"
+  },
+  "author": "https://github.com/RobertoPrevato",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-polyfill": "^6.22.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.16.0",
+    "browserify": "^13.1.0",
+    "browserify-istanbul": "^2.0.0",
+    "es6-promise": "^4.0.5",
+    "eslint-config-xo-space": "^0.15.0",
+    "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-eslint": "^3.0.1",
+    "gulp-header": "^1.8.8",
+    "gulp-less": "^3.3.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.7",
+    "isparta": "^4.0.0",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-browserify": "^5.1.0",
+    "karma-coverage": "^1.1.1",
+    "karma-intl-shim": "^1.0.3",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "phantomjs-prebuilt": "^2.1.12",
+    "pretty-hrtime": "^1.0.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "3.7.0"
+  },
+  "eslintConfig": {
+    "extends": "xo-space/esnext",
+    "env": {
+      "jasmine": true
+    }
+  }
+}

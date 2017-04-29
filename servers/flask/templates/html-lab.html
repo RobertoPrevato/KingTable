@@ -1,0 +1,19 @@
+{%- extends "layout-no.html" -%}
+{%- block title -%}
+  HTML Lab.
+{%- endblock -%}
+{%- block body -%}
+  <p>Not live:</p>
+  <div id="main"></div>
+  <hr>
+  <p>Live:</p>
+  <div id="main-live"></div>
+{%- endblock -%}
+{%- block js -%}
+  <script src="html-lab.built.js"></script>
+  <script>
+  (function () {
+
+  })();
+  </script>
+{%- endblock -%}

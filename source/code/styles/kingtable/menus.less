@@ -1,0 +1,175 @@
+.king-table-region {
+  .ug-submenu {
+    position: relative;
+    > a, > span[tabindex], label {
+      position: relative;
+      // caret icon
+      .oi {
+        position: absolute;
+        right: 6px;
+        top: 5px;
+        font-size: 9px;
+      }
+    }
+    > .ug-menu {
+      top: -35%;
+      left: 100%;
+    }
+  }
+
+  .ug-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+
+    .open {
+      > a, > span[tabindex], > label {
+        background-color: #eee;
+      }
+    }
+
+    li {
+      position: relative;
+    }
+    
+    input[type="checkbox"], input[type="radio"] {
+      position: absolute;
+      left: 3px;
+      margin: 6px;
+      z-index: 10;
+    }
+  }
+  .ug-menu.pull-right {
+    right: 0;
+    left: auto;
+  }
+  .ug-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+  }
+  .ug-menu > li {
+    > a, > span[tabindex], label {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: normal;
+      line-height: 1.42857143;
+      color: #333;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+    label {
+      padding-left: 30px;
+    }
+  }
+  .ug-menu > li > a:hover,
+  .ug-menu > li > a:focus,
+  .ug-menu > li > span[tabindex]:hover,
+  .ug-menu > li > span[tabindex]:focus,
+  .ug-menu > li > label:hover
+  {
+    color: #262626;
+    text-decoration: none;
+    background-color: #f5f5f5;
+  }
+  .ug-menu > .active > a,
+  .ug-menu > .active > a:hover,
+  .ug-menu > .active > a:focus,
+  .ug-menu > .active > span[tabindex],
+  .ug-menu > .active > span[tabindex]:hover,
+  .ug-menu > .active > span[tabindex]:focus,
+  .ug-menu > .active > label {
+    color: #fff;
+    text-decoration: none;
+    background-color: #337ab7;
+    outline: 0;
+  }
+  .ug-menu > .disabled > a,
+  .ug-menu > .disabled > a:hover,
+  .ug-menu > .disabled > a:focus,
+  .ug-menu > .disabled > span[tabindex],
+  .ug-menu > .disabled > span[tabindex]:hover,
+  .ug-menu > .disabled > span[tabindex]:focus,
+  .ug-menu > .disabled > label
+  {
+    color: #777;
+  }
+  .ug-menu > .disabled > a:hover,
+  .ug-menu > .disabled > a:focus,
+  .ug-menu > .disabled > span[tabindex]:hover,
+  .ug-menu > .disabled > span[tabindex]:focus,
+  .ug-menu > .disabled > label
+  {
+    text-decoration: none;
+    cursor: not-allowed;
+    background-color: transparent;
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  }
+  .open > .ug-menu {
+    display: block;
+  }
+  .open > a, .open > span[tabindex] {
+    outline: 0;
+  }
+  .ug-menu-right {
+    right: 0;
+    left: auto;
+  }
+  .ug-menu-left {
+    right: auto;
+    left: 0;
+  }
+  .dropdown-header {
+    display: block;
+    padding: 3px 20px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #777;
+    white-space: nowrap;
+  }
+  .dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 990;
+  }
+  .pull-right > .ug-menu {
+    right: 0;
+    left: auto;
+  }
+  .dropup .caret,
+  .navbar-fixed-bottom .dropdown .caret {
+    content: "";
+    border-top: 0;
+    border-bottom: 4px dashed;
+    border-bottom: 4px solid \9;
+  }
+  .dropup .ug-menu,
+  .navbar-fixed-bottom .dropdown .ug-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
+  }
+}

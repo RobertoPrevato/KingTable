@@ -1,0 +1,220 @@
+/* pagination-bar */
+.king-table-region {
+  .pagination-bar {
+    position: relative;
+    font-size: 12px;
+    line-height: 17px;
+    white-space: nowrap;
+    padding: 4px 10px 0px 10px;
+    height: 26px;
+
+    //for use with open icons:
+    &.o-icons {
+      padding: 0;
+      .pagination-bar-buttons {
+        box-sizing: border-box;
+        background-color: aliceblue;
+        height: 26px;
+        display: inline-block;
+        padding-top: 3px;
+      }
+    }
+
+    .search-field {
+      font-size: 11px;
+      line-height: 12px;
+      height: 16px;
+      position: relative;
+      bottom: 4px;
+      width: 120px;
+      background-repeat: no-repeat;
+      background-position: 147px 3px;
+      padding-right: 20px !important;
+      width: 140px;
+      z-index: 9999;
+    }
+
+    .btn-filters-wizard {
+      top: 5px;
+      position: absolute;
+      height: 22px;
+      font-size: 11px;
+      padding: 0px 10px;
+      margin-left: 8px;
+    }
+
+    .total-page-count {
+      display:inline-block;
+      min-width:30px;
+    }
+
+    .pagination-bar-filters {
+      .btn-advanced-filters {
+        margin-left: 10px;
+        margin-top: 0;
+        vertical-align: top;
+        position: relative;
+        top: 1px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .pagination-bar span, .pagination-bar input, .pagination-bar select {
+    font-size: 11px;
+    margin-right: 0;
+    line-height: normal;
+  }
+
+  .pagination-bar {
+    .pagination-button, .pagination-button-disabled {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+
+      //support for open icons:
+      &.oi {
+        background-image: none;
+        position: relative;
+        top: 0px;
+        left: 0px;
+
+        &:before {
+          margin: 5px;
+          top: 0px;
+          position: absolute;
+          left: 1px;
+        }
+      }
+    }
+    .pagination-button-disabled.oi {
+      opacity: .2;
+    }
+  }
+
+  .pagination-bar .pagination-button {
+    cursor: pointer;
+  }
+
+  .pagination-bar .separator {
+    display: inline-block;
+    width: 6px;
+    border-right: 1px solid #666;
+    height: 13px;
+    cursor: default;
+    margin: 0 4px 5px 4px;
+  }
+
+  .pagination-bar-refresh {
+    background-position: -22px 0px;
+  }
+
+  .pagination-bar-next-page, .pagination-bar-next-item {
+    background-position: -40px -22px;
+  }
+
+  .pagination-bar-last-page, .pagination-bar-last-item {
+    background-position: -66px -22px;
+  }
+
+  .pagination-bar-prev-page, .pagination-bar-prev-item {
+    background-position: -22px -22px;
+  }
+
+  .pagination-bar-first-page, .pagination-bar-first-item {
+    background-position: 0px -22px;
+  }
+
+  .pagination-bar-first-page-disabled, .pagination-bar-first-item-disabled {
+    background-position: 0px -44px;
+  }
+
+  .pagination-bar-prev-page-disabled, .pagination-bar-prev-item-disabled {
+    background-position: -23px -43px;
+  }
+
+  .pagination-bar-last-page-disabled, .pagination-bar-last-item-disabled {
+    background-position: -66px -44px;
+  }
+
+  .pagination-bar-next-page-disabled, .pagination-bar-next-item-disabled {
+    background-position: -40px -44px;
+  }
+
+  .pagination-bar .valigned {
+    position: relative;
+    bottom: 9px;
+  }
+
+  .pagination-bar select.valigned {
+    bottom: 6px;
+    margin-left: 3px;
+    margin-top: 2px;
+    padding: 0px;
+    width: 60px;
+  }
+
+  .pagination-bar-page-number, .pagination-bar-item-number {
+    position: relative;
+    bottom: 10px;
+    margin-top: 2px;
+    padding: 0px;
+    width: 30px;
+  }
+
+  .pagination-bar-page-number-disabled, .pagination-bar-item-number-disabled {
+    position: relative;
+    bottom: 10px;
+    margin-top: 2px;
+    padding: 0px 0px 0px 2px;
+    width: 32px;
+    display: inline-block;
+    text-align: right;
+  }
+
+  .pagination-bar input.valigned {
+  }
+
+  .pagination-bar img {
+    padding: 2px;
+  }
+
+  .pagination-bar span img {
+    border: none;
+    border: 1px solid transparent;
+  }
+
+  .pagination-bar fieldset span {
+    font-style: normal;
+  }
+
+  .color-chart {
+    text-align: center;
+  }
+
+  .color-scheme-cell {
+    height: 20px;
+    width: 90px;
+    margin: 5px;
+    border: 1px solid #222;
+    display: inline-block;
+  }
+
+  input[type="text"].pagination-bar-page-number {
+    text-shadow: 0 0 black;
+    font-size: 11px;
+    line-height: 12px;
+    height: 16px;
+    position: relative;
+    bottom: 9px;
+    background-repeat: no-repeat;
+    background-position: 147px 3px;
+    padding-right: 20px !important;
+    z-index: 9999;
+    border-radius: 0px;
+    height: 14px;
+    margin-bottom: 12px;
+    margin: 4px;
+    color: #555;
+  }
+}

@@ -1,0 +1,28 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable - latest scores demo
+{%- endblock -%}
+{%- block body -%}
+  {% include "partials/controls.html" %}
+  <pre id="main"></pre>
+{%- endblock -%}
+{%- block js -%}
+  <script src="scripts/scores.js"></script>
+  <script>
+  (function () {
+    var table = window.table = new KingTable({
+      data: SCORES,
+      caption: "KingTable - latest scores demo with client side pagination (whole collection in memory, immediately available).",
+      element: document.getElementById("main"),
+      builder: "text"
+    });
+
+    table.render().then(function () {
+      console.log("ok :)");
+    }, function () {
+      console.log("noo :(");
+    });
+  })();
+  </script>
+  <script src="scripts/example-controls.js"></script>
+{%- endblock -%}

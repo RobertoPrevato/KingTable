@@ -1,0 +1,135 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable colors demo
+{%- endblock -%}
+{%- block body -%}
+{% include "partials/themes.html" %}
+<div id="main"></div>
+{%- endblock -%}
+{%- block js -%}
+<script src="scripts/colors.js"></script>
+<script id="colors-filters" type="text/html">
+  <div class="left-column">
+    <dl>
+      <dt>
+        <label for="red-from">Red range</label>
+      </dt>
+      <dd>
+        <input id="red-from" type="text" name="red-from" placeholder="from red %" />
+        <input type="text" name="red-to" placeholder="to red %" />
+      </dd>
+      <dt>
+        <label for="green-from">Green range</label>
+      </dt>
+      <dd>
+        <input id="green-from" type="text" name="green-from" placeholder="from green %" />
+        <input type="text" name="green-to" placeholder="to green %" />
+      </dd>
+      <dt>
+        <label for="blue-from">Blue range</label>
+      </dt>
+      <dd>
+        <input id="blue-from" type="text" name="blue-from" placeholder="from blue %" />
+        <input type="text" name="blue-to" placeholder="to blue %" />
+      </dd>
+      <dt>
+        <label>Dominance</label>
+      </dt>
+      <dd>
+        <label for="red-dominance">Red</label>
+        <input id="red-dominance" type="radio" name="dominance" value="red" />
+        <label for="green-dominance">Green</label>
+        <input id="green-dominance" type="radio" name="dominance" value="green" />
+        <label for="blue-dominance">Blue</label>
+        <input id="blue-dominance" type="radio" name="dominance" value="blue" />
+      </dd>
+    </dl>
+    <br class="break" />
+  </div>
+  <div class="buttons break">
+    <button class="btn btn-default btn-clear-filters">Clear filters</button>
+  </div>
+</script>
+<script>
+(function () {
+  var table = window.table = new KingTable({
+    id: "colors-table",
+    data: COLORS,
+    caption: "KingTable - colors demo with client side pagination (whole collection in memory, obtained after delay)",
+    element: document.getElementById("main"),
+    columns: {
+      name: "Name",
+      color: {
+        name: "Color",
+        html: function (item, value) {
+          return "<span class=\"kt-color\" style=\"background-color:" + value + "\"></span><span class=\"kt-color-hex\">" + this.highlight(value) + "</span>";
+        }
+      },
+      red: "Red",
+      green: "Green",
+      blue: "Blue",
+      hue: "Hue",
+      hslLight: "Light (HSL)",
+      hslSaturation: "Saturation (HSL)",
+      hsvSaturation: "Saturation (HSV)",
+      hsvValue: "Value (HSV)"
+    },/*
+    itemDecorator: (item) => { // allows to define HTML properties for each item
+      return {"style": "background-color: " + item.color};
+    },*/
+    _onItemClick: (item, e) => {
+      console.log(item);
+    },
+    //filtersView: "colors-filters",
+    //views: [ // verifies that it's possible to change table views
+    //  {name:"table", resolver: true}
+    //],
+    
+    //idProperty: "color",
+    //detailsUrl: "/#/myitem/:id",
+
+    // extra fields to be displayed. TODO: is 'fields' a proper name?
+    fields: [/*
+      {
+        name: "details-link",
+        "class": "foo",
+        displayName: "Details",
+        html: (value, item) => "<a class='kt-go-to-details' href='/#/foo/" + item.color + "'>Go to details</a>"
+      },
+      {
+        name: "delete-btn",
+        displayName: "Delete",
+        html: () => "<button class='kt-delete-item'>Delete</button>"
+      }*/
+    ],
+    // event handlers that require only the item as input parameter
+    /*
+    ievents: {
+      "click .kt-delete-item": function(item) {
+        console.log("[*] Here", item);
+      }
+    },
+    events: {
+      "click .kt-delete-item": function(e, item) {
+        console.log("[*] Here", e, item);
+      }
+    },*/
+    extraViews: [
+      {
+        name: "Squares",
+        value: "squares",
+        getItemTemplate: function () {
+          return "<li title=\"\{\{name\}\}\" style=\"background-color:\{\{color}\}\"></li>";
+        }
+      }
+    ]
+  });
+
+  table.render().then(function () {
+    console.log("ok :)");
+  }, function () {
+    console.log("noo :(");
+  });
+})();
+</script>
+{%- endblock -%}

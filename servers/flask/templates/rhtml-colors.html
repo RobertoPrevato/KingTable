@@ -1,0 +1,43 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable colors demo
+{%- endblock -%}
+{%- block body -%}
+  {% include "partials/themes.html" %}
+  <div id="main"></div>
+{%- endblock -%}
+{%- block js -%}
+  <script>
+  (function () {
+    var table = window.table = new KingTable({
+      id: "colors-table",
+      url: "/api/colors",
+      caption: "KingTable - colors demo with server side pagination (paginated set in memory)",
+      element: document.getElementById("main"),
+      columns: {
+        name: "Name",
+        color: {
+          name: "Color",
+          html: function (item, value) {
+            return "<span class=\"kt-color\" style=\"background-color:" + value + "\"></span><span class=\"kt-color-hex\">" + this.highlight(value) + "</span>";
+          }
+        },
+        red: "Red",
+        green: "Green",
+        blue: "Blue",
+        hue: "Hue",
+        hslLight: "Light (HSL)",
+        hslSaturation: "Saturation (HSL)",
+        hsvSaturation: "Saturation (HSV)",
+        hsvValue: "Value (HSV)"
+      }
+    });
+
+    table.render().then(function () {
+      console.log("ok :)");
+    }, function () {
+      console.log("noo :(");
+    });
+  })();
+  </script>
+{%- endblock -%}

@@ -1,0 +1,44 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable 2.0.0
+{%- endblock -%}
+{%- block body -%}
+<h1>Links</h1>
+<ol>
+  <li>
+    <h3>Plain text examples</h3>
+    <p>Table rendered in plain text, without event handlers.
+      Suitable for <a href="https://nodejs.org">Node.js</a> console applications, read only interfaces and emails.</p>
+    <ul>
+      <li><a href="/colors">Colors table with server side pagination and filtering</a></li>
+      <li><a href="/colors-fixed">Colors table with client side pagination (collection immediately available when instantiating table)</a></li>
+      <li><a href="/colors-fixed-delay">Colors table with client side pagination (collection fetched after instantiating table)</a></li>
+      <li><a href="/scores-fixed">Latest Scores table with client side pagination (collection immediately available when instantiating table)</a></li>
+    </ul>
+  </li>
+  <li>
+    <h3>HTML examples</h3>
+    <p>Table rendered in HTML format without event handlers.
+      Suitable for web pages, desktop applications implemented using <a href="http://electron.atom.io/">Electron</a>, and emails with HTML body.</p>
+    <ul>
+      <li><a href="/html-colors">Colors table with server side pagination and filtering</a></li>
+      <li><a href="/html-colors-fixed">Colors table with client side pagination (collection immediately available when instantiating table)</a></li>
+      <li><a href="/html-colors-fixed-delay">Colors table with client side pagination (collection fetched after instantiating table)</a></li>
+      <li><a href="/html-scores-fixed">Latest Scores table with client side pagination (collection immediately available when instantiating table)</a></li>
+    </ul>
+  </li>
+  <li>
+    <h3>Rich HTML examples</h3>
+    <p>Table rendered in HTML format with event handlers and extra tools.
+      Suitable for web pages and desktop applications implemented using <a href="http://electron.atom.io/">Electron</a>.</p>
+    <ul>
+      <li><a href="/rhtml-colors">Colors table with server side pagination and filtering</a></li>
+      <li><a href="/rhtml-colors-fixed">Colors table with client side pagination (collection immediately available when instantiating table)</a></li>
+      <li><a href="/rhtml-colors-fixed-delay">Colors table with client side pagination (collection fetched after instantiating table)</a></li>
+      <li><a href="/rhtml-scores-fixed">Latest Scores table with client side pagination (collection immediately available when instantiating table)</a></li>
+    </ul>
+  </li>
+</ol>
+{%- endblock -%}
+{%- block js -%}
+{%- endblock -%}

@@ -1,0 +1,27 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable colors demo
+{%- endblock -%}
+{%- block body -%}
+  {% include "partials/controls.html" %}
+  <pre id="main"></pre>
+{%- endblock -%}
+{%- block js -%}
+  <script>
+  (function () {
+    var table = window.table = new KingTable({
+      url: "/api/colors",
+      caption: "KingTable - colors demo with server side pagination (paginated set in memory)",
+      element: document.getElementById("main"),
+      builder: "text"
+    });
+
+    table.render().then(function () {
+      console.log("ok :)");
+    }, function () {
+      console.log("noo :(");
+    });
+  })();
+  </script>
+  <script src="scripts/example-controls.js"></script>
+{%- endblock -%}

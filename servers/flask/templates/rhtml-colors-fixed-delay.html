@@ -1,0 +1,51 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable colors demo
+{%- endblock -%}
+{%- block body -%}
+{% include "partials/themes.html" %}
+<div id="main"></div>
+{%- endblock -%}
+{%- block js -%}
+<script src="scripts/colors.js"></script>
+<script>
+(function () {
+  var table = window.table = new KingTable({
+    id: "colors-table",
+    caption: "KingTable - colors demo with client side pagination (whole collection in memory, obtained after delay)",
+    element: document.getElementById("main"),
+    columns: {
+      name: "Name",
+      color: {
+        name: "Color",
+        html: function (item, value) {
+          return "<span class=\"kt-color\" style=\"background-color:" + value + "\"></span><span class=\"kt-color-hex\">" + this.highlight(value) + "</span>";
+        }
+      },
+      red: "Red",
+      green: "Green",
+      blue: "Blue",
+      hue: "Hue",
+      hslLight: "Light (HSL)",
+      hslSaturation: "Saturation (HSL)",
+      hsvSaturation: "Saturation (HSV)",
+      hsvValue: "Value (HSV)"
+    },
+  }, {
+    getFetchPromise: function (params) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve(COLORS);
+        }, 2000);
+      });
+    }
+  });
+
+  table.render().then(function () {
+    console.log("ok :)");
+  }, function () {
+    console.log("noo :(");
+  });
+})();
+</script>
+{%- endblock -%}

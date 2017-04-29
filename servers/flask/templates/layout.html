@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+/**
+ * KingTable 2.0.0
+ * https://github.com/RobertoPrevato/KingTable
+ *
+ * Copyright 2017, Roberto Prevato
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+-->
+<html lang="en">
+<head>
+  <!-- Force latest IE rendering engine or ChromeFrame if installed -->
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+  <meta charset="utf-8">
+  <title>{%- block title -%}{%- endblock -%}</title>
+  <link rel="shortcut icon" type="image/png" href="ugr.png">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Roberto Prevato" />
+  <link rel="stylesheet" type="text/css" href="styles/examples.css" />
+  <link rel="stylesheet" href="styles/kingtable.css">
+</head>
+<body class="theme-flatwhite">
+  <header id="header">
+    <div id="logo-region">
+      <a href="/">
+        <img src="rp.png" alt="Roberto Prevato" width="91" height="50">
+      </a>
+      <h6><a href="https://github.com/RobertoPrevato/KingTable">Roberto Prevato - roberto.prevato@gmail.com</a></h6>
+    </div>
+  </header>
+  {%- block body -%}{%- endblock -%}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.js"></script>
+  <script src="scripts/kingtable.js"></script>
+  {%- block js -%}{%- endblock -%}
+</body>
+</html>

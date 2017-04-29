@@ -1,0 +1,40 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable colors demo
+{%- endblock -%}
+{%- block body -%}
+  {% include "partials/controls.html" %}
+  <div id="main"></div>
+{%- endblock -%}
+{%- block js -%}
+  <script src="scripts/colors.js"></script>
+  <script>
+  (function () {
+    /*
+    sort example:
+    -- table.sortBy({"hsvValue": "asc", "color": "asc"});
+    */
+    var table = window.table = new KingTable({
+      data: COLORS,
+      caption: "KingTable - colors demo with client side pagination (whole collection in memory, immediately available).",
+      element: document.getElementById("main"),
+      columns: {
+        "color": {
+          name: "Color",
+          html: function (item, value) {
+            return "<span class=\"kt-color\" style=\"background-color:" + value + "\"></span><span class=\"kt-color-hex\">" + this.highlight(value) + "</span>";
+          }
+        }
+      },
+      builder: "html"
+    });
+
+    table.render().then(function () {
+      console.log("ok :)");
+    }, function () {
+      console.log("noo :(");
+    });
+  })();
+  </script>
+  <script src="scripts/example-controls.js"></script>
+{%- endblock -%}
