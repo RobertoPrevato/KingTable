@@ -30,8 +30,8 @@ KingTable 2.0 has been tested in the following browsers:
 The previous version of the KingTable library is still available at: [https://github.com/RobertoPrevato/jQuery-KingTable](https://github.com/RobertoPrevato/jQuery-KingTable).
 
 ### Features of the new version
-
 Following is a table listing the features that were added to KingTable 2.0.
+
 | Feature                             | Description                                                                                                                                                        |
 |-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ES6 source code                     | ES6 source code, library is transpiled to ES5 for distribution.                                                                                                    |
