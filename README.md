@@ -17,6 +17,7 @@ A full list of possible options is available inside the dedicated [wiki page](ht
 
 ## Browsers support
 KingTable 2.0 has been tested in the following browsers:
+
 | Browser  | Version |
 |----------|---------|
 | Chrome   | 55      |
@@ -29,6 +30,7 @@ KingTable 2.0 has been tested in the following browsers:
 The previous version of the KingTable library is still available at: [https://github.com/RobertoPrevato/jQuery-KingTable](https://github.com/RobertoPrevato/jQuery-KingTable).
 
 ### Features of the new version
+
 Following is a table listing the features that were added to KingTable 2.0.
 | Feature                             | Description                                                                                                                                                        |
 |-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -125,32 +127,7 @@ For full information, refer to the [dedicated wiki page](https://github.com/Robe
 The KingTable widget includes logic to implement client side localization, which is used to display proper names of buttons (refresh, page number, results per page, etc.).
 
 ## How to integrate with your project
-In order to use the KingTable plugin, there are two options:
-* download the files in the dist folder and integrate in your web pages, like in the linked demo
->> TODO: add more details
-
-### How to integrate with server side code
-The KingTable logic defines an interface, in order to offer pagination and search out of the box.
-When performing AJAX calls to fetch data that requires server side pagination (and therefore, server side sorting and searching),
-it sends the following information:
-```js
-{
-  fixed: [boolean],   // whether the table requires server side pagination or not
-  page: [number],     // page number
-  size: [number],     // results per page
-  orderBy: [string],  // name of the property to use for sorting
-  sortOrder: [string],// asc or desc
-  search: [string],   // text search
-  timestamp: [number] // the timestamp of the first time the table was rendered: useful for fast growing collections
-}
-```
-When receiving an AJAX response, it expects the following structure:
-```js
-{
-  subset: [array],// array of items that respect the given filters
-  total: [number] // the total count of items that respect the given filters: for example 13000
-}
-```
+Please refer to the dedicated [wiki page](https://github.com/RobertoPrevato/KingTable/wiki/How-to-integrate-with-your-project), for instructions on how to integrate with your project and with server side code.
 
 ## Repository structure
 * The *source* folder contains library source code and tasks related code

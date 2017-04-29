@@ -38,3 +38,5 @@ jspm_packages
 
 **/env/*
 **/__pycache__/*
+httpdocs/*
+.vscode/*
