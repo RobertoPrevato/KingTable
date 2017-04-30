@@ -30,7 +30,7 @@ gulp.task("js-build", () => {
 
 gulp.task("dist", () => {
   config.esToJs.forEach(o => {
-    var filename = o.filename + ".min.js";
+    var filename = o.filename + ".js";
     browserify(o.entry, { debug: false })
       .transform(babelify, { 
         sourceMaps: false 

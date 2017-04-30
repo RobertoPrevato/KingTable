@@ -223,7 +223,7 @@ export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {
           valueEl = new VHtmlFragment(html || "");
         } else {
           // is a search active?
-          if (searchPattern && autoHighlight) {
+          if (searchPattern && autoHighlight && _.isString(value)) {
             // an html fragment is required to display an highlighted value
             valueEl = new VHtmlFragment(builder.highlight(value, searchPattern));
           } else {

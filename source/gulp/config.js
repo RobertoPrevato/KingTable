@@ -63,7 +63,7 @@ module.exports = {
       dest: WWWROOT
     },
     {
-      src: "dummydata/*.js",
+      src: "testdata/*.js",
       dest: JS_DEST
     },
     {

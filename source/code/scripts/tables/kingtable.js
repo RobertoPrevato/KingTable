@@ -380,7 +380,8 @@ class KingTable extends EventsEmitter {
         number: function (columnSchema, objSchema) {
           return {
             format: function (value) {
-              // TODO: configurable locale!
+              // NB: this function is used only if a formatter function is not
+              // defined for the given property; so here we suggest a format that makes sense for the value.
               return N.format(value);
             }
           };
@@ -388,7 +389,14 @@ class KingTable extends EventsEmitter {
         date: function (columnSchema, objSchema) {
           return {
             format: function dateFormatter(value) {
-              var format = KingTable.DateUtils.defaults.format.long;
+              // NB: this function is used only if a formatter function is not
+              // defined for the given property; so here we suggest a format that makes sense for the value.
+
+              // support date format defined inside column schema
+              // use a format that makes sense for the value
+              // if the date has time component, use format that contains time; otherwise only date part
+              var hasTime = KingTable.DateUtils.hasTime(value);
+              var format = KingTable.DateUtils.defaults.format[hasTime ? "long" : "short"];
               return KingTable.DateUtils.format(value, format);
             }
           };

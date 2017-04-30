@@ -253,4 +253,15 @@ describe("Date utilities", () => {
     expect(a.getSeconds()).toEqual(0);
     expect(a.getMilliseconds()).toEqual(0);
   })
+
+  it("must allow to know whether a date has time data", () => {
+    var a = new Date(1986, 4, 30);
+    expect(D.hasTime(a)).toEqual(false, "a date with only year, month and date can be described without time information")
+
+    a = new Date(1986, 4, 30, 10, 30);
+    expect(D.hasTime(a)).toEqual(true, "a date with hours and minutes has time information")
+
+    a = new Date(1986, 4, 30, 10, 30);
+    expect(D.hasTime(a)).toEqual(true, "a date with hours and minutes has time information")
+  })
 });

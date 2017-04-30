@@ -1,0 +1,45 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable people demo
+{%- endblock -%}
+{%- block body -%}
+{% include "partials/themes.html" %}
+<div id="main"></div>
+{%- endblock -%}
+{%- block js -%}
+<script src="scripts/people.js"></script>
+<style>
+  .king-table { white-space: nowrap; }
+</style>
+<script>
+(function () {
+  var table = window.table = new KingTable({
+    id: "people-table",
+    data: PEOPLE,
+    caption: "KingTable - people demo with client side pagination (whole collection in memory)",
+    element: document.getElementById("main"),
+    columns: {
+      name: "Name",
+      email: "Email",
+      phone: "Phone",
+      birthdate: {
+        name: "Birthdate"
+      },
+      isActive: {
+        name: "Active",
+        hidden: 1
+      },
+      _id: {
+        secret: true
+      },
+      address: "Address",
+      company: "Company",
+      gender: "Gender",
+      registered: "Registered"
+    }
+  });
+
+  table.render();
+})();
+</script>
+{%- endblock -%}

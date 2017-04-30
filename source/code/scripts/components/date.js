@@ -320,5 +320,15 @@ export default {
    */
   isToday(a) {
     return this.sameDay(a, new Date());
+  },
+
+  /**
+   * Returns a value indicating whether a date has a time component.
+   *
+   * @param {date} a: date to check;
+   */
+  hasTime(a) {
+    var hours = a.getHours(), minutes = a.getMinutes(), seconds = a.getSeconds();
+    return !!(hours || minutes || seconds);
   }
 }
