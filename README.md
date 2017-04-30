@@ -127,7 +127,7 @@ For full information, refer to the [dedicated wiki page](https://github.com/Robe
 The KingTable library includes logic to implement client side localization, which is used to display proper names of buttons (refresh, page number, results per page, etc.).
 
 ## How to integrate with your project
-Please refer to the dedicated [wiki page](https://github.com/RobertoPrevato/KingTable/wiki/How-to-integrate-with-your-project), for instructions on how to integrate with your project and with server side code.
+Please refer to the dedicated [wiki page](https://github.com/RobertoPrevato/KingTable/wiki/How-to-integrate-in-your-project), for instructions on how to integrate with your project and with server side code.
 
 ## Repository structure
 * The *source* folder contains library source code and tasks related code
