@@ -73,11 +73,10 @@ export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {
       a = [],
       goToDetails = reg.goToDetails;
 
-    if (!/\/$/.test(detailRoute)) {
-      detailRoute = o.detailRoute = detailRoute + "/";
-    }
-
     if (detailRoute) {
+      if (!/\/$/.test(detailRoute)) {
+        detailRoute = o.detailRoute = detailRoute + "/";
+      }
       // Following could cause exception if id property cannot be determined automatically
       var idProperty = this.table.getIdProperty();
 
