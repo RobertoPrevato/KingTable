@@ -1,5 +1,5 @@
 # KingTable 2
-Table widget for administrative tables that are able to build themselves, on the basis of their input data.
+Library for administrative tables that are able to build themselves, on the basis of their input data.
 Supports client and server side pagination; client and server side search; custom filters views; automatic menu to hide columns and support for custom tools. Client side export feature into: csv, json and xml formats.
 
 ## Objectives of the library
