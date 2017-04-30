@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>KingTable sample working with PHP and MySQL</title>
+    <link href="kingtable.css" rel="stylesheet">
+    <!-- NB: requires kingtable.js -->
+    <script src="kingtable.js"></script>
+</head>
+<body bgcolor=white>
+    <div class="users-table theme-clear" id="users-table"></div>
+</body>
+<script>
+    (function () {
+        var table = window.kingtable = new KingTable({
+            id: "users-table",
+            element: document.getElementById("users-table"),
+            size: 100,
+            url: "server/getUsers.class.php"
+        });
+        table.render();
+    })();
+</script>
+</html>
