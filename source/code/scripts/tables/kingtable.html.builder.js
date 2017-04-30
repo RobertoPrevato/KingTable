@@ -69,19 +69,23 @@ export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {
   getGeneratedFields() {
     var o = this.options,
       reg = this.getReg(),
-      detailsUrl = o.detailsUrl,
+      detailRoute = o.detailRoute,
       a = [],
       goToDetails = reg.goToDetails;
 
-    if (detailsUrl) {
+    if (!/\/$/.test(detailRoute)) {
+      detailRoute = o.detailRoute = detailRoute + "/";
+    }
+
+    if (detailRoute) {
       // Following could cause exception if id property cannot be determined automatically
       var idProperty = this.table.getIdProperty();
 
       a.push({
         name: "details-link",
         html: item => {
-          var itemDetailsUrl = detailsUrl.replace(":id", item[idProperty]);
-          return `<a class='kt-details-link' href='${itemDetailsUrl}'>${goToDetails}</a>`;
+          var itemDetailRoute = detailRoute + item[idProperty];
+          return `<a class='kt-details-link' href='${itemDetailRoute}'>${goToDetails}</a>`;
         }
       });
     }

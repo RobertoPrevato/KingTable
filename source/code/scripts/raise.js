@@ -64,4 +64,5 @@ Errors
 36. Cannot retrieve an item by event data. Make sure that HTML elements generated for table items have 'kt-item' class.
 37. Cannot retrieve an item by element data. Make sure that HTML elements generated for table items have 'data-ix' attribute.
 38. Cannot obtain HTML from parameter.
+39. KingTable is not defined in global namespace.
 */

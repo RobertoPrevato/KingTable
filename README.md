@@ -35,9 +35,9 @@ Following is a table listing the features that were added to KingTable 2.0.
 | Feature                             | Description                                                                                                                                                        |
 |-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ES6 source code                     | ES6 source code, library is transpiled to ES5 for distribution.                                                                                                    |
-| Unit tested source code             | Source code is integrated with Gulp tasks, Karma, Jasmine for unit tests. Almost 300 tests.                                                                        |
+| Unit tested source code             | Source code is integrated with Gulp tasks, Karma, Jasmine for unit tests. Almost 300 tests - still to grow!                                                        |
 | Removed dependencies                | Removed dependency from jQuery, Lodash, I.js, R.js.                                                                                                                |
-| Improved exceptions                 | Raised exceptions include a link to GitHub wiki with detailed instructions                                                                                         |
+| Improved exceptions                 | Raised exceptions include a link to GitHub wiki with detailed instructions.                                                                                        |
 | LRU cache                           | _Least Recently Used_ caching mechanism to cache the last _n_ pages by filters, to reduce number of AJAX requests.                                                 |
 | Caching of filters                  | Filters for each table are cached using client side storage (configurable), so they are persisted upon page refresh.                                               |
 | Improved _CS_ sorting               | Strings that can be sorted like numbers (like "25%", "25.40 EUR", "217°") are automatically parsed as numbers when sorting.                                        |
@@ -48,7 +48,7 @@ Following is a table listing the features that were added to KingTable 2.0.
 | Improved support for other medias   | Support for NodeJS console applications and HTML tables rendering for email bodies sent using NodeJS.                                                              |
 
 ## Modes
-The KingTable widget implements two working modes:
+The KingTable library implements two working modes:
 * fixed (collections that do not require server side pagination)
 * normal (collections that require server side pagination)
 
@@ -90,14 +90,14 @@ When receiving an AJAX response, a normal table expects to receive the following
 }
 ```
 ## Usability
-The KingTable widget is designed to follow "old-school" design principles
+The KingTable library is designed to follow "old-school" design principles
 * the user should be able to immediately understand the size of the collection, so the pagination bar is designed to display the total amount of rows; of pages, and the number of results currently displayed
 * keyboard navigation: the KingTable controls can be navigated using the TAB; it is possible to navigate through pages using the left, right, A and D keys
 * support for browser navigation buttons
 * the table logic handles ajax errors and displays a preloader while fetching data
 
 ### Inline editing feature
-The KingTable widget doesn't offer built-in inline editing feature.
+The KingTable library doesn't offer built-in inline editing feature.
 This is intentional, since in most situations we deal with complex objects that cannot be easily edited inline.
 In any case, the library makes it easy to configure HTML and event handlers to implement inline editing feature,
 for example:
@@ -124,7 +124,7 @@ var table = new KingTable({
 
 ## About localization
 For full information, refer to the [dedicated wiki page](https://github.com/RobertoPrevato/KingTable/wiki/Implementing-localization).
-The KingTable widget includes logic to implement client side localization, which is used to display proper names of buttons (refresh, page number, results per page, etc.).
+The KingTable library includes logic to implement client side localization, which is used to display proper names of buttons (refresh, page number, results per page, etc.).
 
 ## How to integrate with your project
 Please refer to the dedicated [wiki page](https://github.com/RobertoPrevato/KingTable/wiki/How-to-integrate-with-your-project), for instructions on how to integrate with your project and with server side code.

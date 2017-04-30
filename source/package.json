@@ -1,7 +1,7 @@
 {
   "name": "kingtable",
   "version": "2.0.0",
-  "description": "Table widget for administrative tables that are able to build themselves, on the basis of their input data.",
+  "description": "Library for administrative tables that are able to build themselves, on the basis of their input data.",
   "private": true,
   "scripts": {
     "dev": "./node_modules/.bin/gulp dev",

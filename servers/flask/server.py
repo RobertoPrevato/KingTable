@@ -77,6 +77,10 @@ def rhtml_colors_page():
 def rhtml_colors_page_fixed():
     return render_template("rhtml-colors-fixed.html")
 
+@app.route("/rhtml-colors-locale")
+def colors_page_localized():
+    return render_template("rhtml-colors-localized.html")
+
 @app.route("/rhtml-colors-fixed-delay")
 def rhtml_colors_page_fixed_delay():
     return render_template("rhtml-colors-fixed-delay.html")

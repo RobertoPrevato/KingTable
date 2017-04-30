@@ -1,0 +1,89 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable demo colori
+{%- endblock -%}
+{%- block body -%}
+{% include "partials/themes.html" %}
+<div id="main"></div>
+{%- endblock -%}
+{%- block js -%}
+<script src="scripts/colors.js"></script>
+<script>
+(function () {
+
+  // example of client side localization
+  KingTable.regional.it = {
+    "goToDetails": "Dettagli",
+    "sortOptions": "Ordinamento",
+    "searchSortingRules": "Durante una ricerca testuale, ordina per rilevanza.",
+    "advancedFilters": "Filtri avanzati",
+    "sortModes": {
+      "simple": "Semplice (proprietà singola)",
+      "complex": "Complesso (proprietà multiple)"
+    },
+    "viewsType": {
+      "table": "Tabella",
+      "gallery": "Galleria"
+    },
+    "exportFormats": {
+      "csv": "Csv",
+      "json": "Json",
+      "xml": "Xml"
+    },
+    "columns": "Colonne",
+    "export": "Esporta",
+    "view": "Vista",
+    "views": "Viste",
+    "loading": "Caricamento dati",
+    "noData": "Nessun oggetto da mostrare",
+    "page": "Pagina",
+    "resultsPerPage": "Risultati per pagina",
+    "results": "Risultati",
+    "of": "di",
+    "firstPage": "Prima pagina",
+    "lastPage": "Ultima pagina",
+    "prevPage": "Pagina precedente",
+    "nextPage": "Prossima pagina",
+    "refresh": "Ricarica",
+    "fetchTime": "Dati caricati alle:",
+    "anchorTime": "Dati fino alle:",
+    "sortAscendingBy": "Ordina per {{name}} crescente",
+    "sortDescendingBy": "Ordina per {{name}} decrescente",
+    "errorFetchingData": "Si è verificato un errore durante il caricamento dei dati."
+  };
+
+  // set default language to IT
+  KingTable.defaults.lang = "it";
+
+  var table = window.table = new KingTable({
+    id: "colors-table",
+    data: COLORS,
+    caption: "KingTable - example of client side localization",
+    element: document.getElementById("main"),
+    columns: {
+      name: "Nome",
+      color: {
+        name: "Colore",
+        html: function (item, value) {
+          return "<span class=\"kt-color\" style=\"background-color:" + value + "\"></span><span class=\"kt-color-hex\">" + this.highlight(value) + "</span>";
+        }
+      },
+      red: "Rosso",
+      green: "Verde",
+      blue: "Blu",
+      hue: "Tonalità",
+      hslLight: "Luminosità (HSL)",
+      hslSaturation: "Saturazione (HSL)",
+      hsvSaturation: "Saturazione (HSV)",
+      hsvValue: "Valore (HSV)"
+    }
+  });
+
+  table.render().then(function () {
+    console.log("ok :)");
+  }, function () {
+    console.log("noo :(");
+  });
+})();
+</script>
+{%- endblock -%}
