@@ -18,17 +18,6 @@ The previous version of the KingTable library is available at: [https://github.c
 Refer to the [wiki page](https://github.com/RobertoPrevato/KingTable/wiki).
 A full list of possible options is available inside the dedicated [wiki page](https://github.com/RobertoPrevato/KingTable/wiki/Options).
 
-## Browsers support
-KingTable 2.0 has been tested in the following browsers:
-
-| Browser  | Version |
-|----------|---------|
-| Chrome   | 55      |
-| Firefox  | 53      |
-| Edge     | TODO: TEST      |
-| IE       | 11      |
-| IE       | 10      |
-
 ### Features of the new version
 Following is a table listing the features that were added to KingTable 2.0.
 
