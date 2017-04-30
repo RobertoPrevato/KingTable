@@ -1,4 +1,4 @@
-# KingTable 2
+# KingTable
 Library for administrative tables that are able to build themselves, on the basis of their input data.
 Supports client and server side pagination; client and server side search; custom filters views; automatic menu to hide columns and support for custom tools. Client side export feature into: csv, json and xml formats.
 
@@ -10,6 +10,7 @@ Supports client and server side pagination; client and server side search; custo
 ## Live demo
 The following demos are available online:
 * [Colors demo](https://robertoprevato.github.io/demos/kingtable/colors-fixed.html)
+> TODO (work in progress)
 
 ## Previous version
 The previous version of the KingTable library is available at: [https://github.com/RobertoPrevato/jQuery-KingTable](https://github.com/RobertoPrevato/jQuery-KingTable).
