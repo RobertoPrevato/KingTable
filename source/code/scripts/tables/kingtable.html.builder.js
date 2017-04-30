@@ -43,26 +43,24 @@ export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {
    * Sets listeners for the given table.
    */
   setListeners() {
-    var table = this.table;
-    if (!table) return;
     var self = this;
+    var table = self.table;
+    if (!table || !table.element) return self;
 
-    if (table.element) {
-      self.listenTo(table, {
-        "fetching:data": () => {
-          self.loadingHandler();
-        },
-        "fetched:data": () => {
-          self.unsetLoadingHandler();
-        },
-        "fetch:fail": () => {
-          self.unsetLoadingHandler().display(self.errorView());
-        },
-        "no-results": () => {
-          self.unsetLoadingHandler().display(self.emptyView());
-        }
-      });
-    }
+    self.listenTo(table, {
+      "fetching:data": () => {
+        self.loadingHandler();
+      },
+      "fetched:data": () => {
+        self.unsetLoadingHandler();
+      },
+      "fetch:fail": () => {
+        self.unsetLoadingHandler().display(self.errorView());
+      },
+      "no-results": () => {
+        self.unsetLoadingHandler().display(self.emptyView());
+      }
+    });
   }
 
   /**

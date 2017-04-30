@@ -553,6 +553,7 @@ class KingTable extends EventsEmitter {
     // results count change
     if (self.onResultsCountChange)
       self.onResultsCountChange();
+    self.trigger("change:pagination");
     return self;
   }
 
@@ -1437,11 +1438,19 @@ class KingTable extends EventsEmitter {
     self.render();
   }
 
+  isSearchActive() {
+    var filter = this.filters.getRuleByKey("search");
+    return !!filter;
+  }
+
   /**
    * Unsets the search filters in this table.
    */
   unsetSearch() {
     var self = this;
+    if (!self.isSearchActive()) {
+      return self;
+    }
     self.filters.removeRuleByKey("search");
     self.searchText = null;
     if (self.hasData())

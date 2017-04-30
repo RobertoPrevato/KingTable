@@ -162,6 +162,21 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
     this.filtersViewOpen = options.filtersView && options.filtersViewExpandable && options.filtersViewOpen;
   }
 
+  setListeners() {
+    super.setListeners();
+
+    // additional listeners
+    var self = this, table = self.table;
+    if (!table || !table.element) return self;
+
+    self.listenTo(table, {
+      "change:pagination": () => {
+        if (!this.rootElement) return true;
+        self.updatePagination();
+      }
+    });
+  }
+
   static get defaults() {
     return {
       view: "table",
@@ -218,7 +233,7 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
       if (table.validateForSeach(text)) {
         // the value is sufficient to trigger a search
         table.search(text);
-      } else {
+      } else if (table.isSearchActive()) {
         // unset search: the value is either too short or empty
         table.unsetSearch();
         table.render();

@@ -15,10 +15,6 @@ import json
 from core.lists.listutils import ListUtils
 from core.literature.scribe import Scribe
 
-# The maximum collection length that the server allows for "fixed collections"
-# (i.e. collections that don't require server side pagination)
-MAXIMUM_COLLECTION_LENGTH = 600
-
 
 class CollectionManager:
     """Provides methods to work with underlying collections; read from static json structures"""
@@ -29,14 +25,6 @@ class CollectionManager:
     def get_catalog(self, data):
         if data is None:
             raise TypeError
-        fixed = data.get("fixed", False)
-        if fixed:
-            # the client is asking a full collection (i.e. a collection that doesn't require server side pagination)
-            # return the collection; but only if it doesn't exceeds a reasonable maximum
-            all_data = self.get_all()
-            all_data = ListUtils.optimize_list(all_data)
-            if len(all_data) <= MAXIMUM_COLLECTION_LENGTH:
-                return all_data
 
         # timestamp = data["timestamp"] # timestamp of the first time a page was required
         page_number = data.get("page")

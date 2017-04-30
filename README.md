@@ -9,7 +9,10 @@ Supports client and server side pagination; client and server side search; custo
 
 ## Live demo
 The following demos are available online:
-* [Live demo](https://robertoprevato.github.io/demos/kingtable/index.html)
+* [Colors demo](https://robertoprevato.github.io/demos/kingtable/colors-fixed.html)
+
+## Previous version
+The previous version of the KingTable library is available at: [https://github.com/RobertoPrevato/jQuery-KingTable](https://github.com/RobertoPrevato/jQuery-KingTable).
 
 ## Documentation
 Refer to the [wiki page](https://github.com/RobertoPrevato/KingTable/wiki).
@@ -25,9 +28,6 @@ KingTable 2.0 has been tested in the following browsers:
 | Edge     | TODO: TEST      |
 | IE       | 11      |
 | IE       | 10      |
-
-## Previous version
-The previous version of the KingTable library is still available at: [https://github.com/RobertoPrevato/jQuery-KingTable](https://github.com/RobertoPrevato/jQuery-KingTable).
 
 ### Features of the new version
 Following is a table listing the features that were added to KingTable 2.0.

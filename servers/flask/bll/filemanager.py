@@ -5,6 +5,7 @@ from os import listdir
 from os.path import isfile, join, isdir
 from core.lists.listutils import ListUtils
 
+
 class FileManager:
     """Provides methods to work with files collections"""
     def __init__(self):
