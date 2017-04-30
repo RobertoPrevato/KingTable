@@ -9,7 +9,8 @@ Supports client and server side pagination; client and server side search; custo
 
 ## Live demo
 The following demos are available online:
-* [Colors demo](https://robertoprevato.github.io/demos/kingtable/colors-fixed.html)
+* [Colors demo](https://robertoprevato.github.io/demos/kingtable/colors.html)
+* [People demo](https://robertoprevato.github.io/demos/kingtable/people.html)
 > TODO (work in progress)
 
 ## Previous version
