@@ -102,7 +102,7 @@ Please refer to the dedicated [wiki page](https://github.com/RobertoPrevato/King
 * The *source* folder contains library source code and tasks related code
 * The *httpdocs* folder is a container for built code, when testing using the provided example server
 * The *servers* folder is meant to contain development servers; currently a single a development server written in Python, using the wonderful [Flask framework](http://flask.pocoo.org/)
-* The *dist* folder contains the bundled source code `/dist/kingtable.js`; and the minified source `/dist/kingtable.min.js`
+* The *dist* folder contains the bundled source code `/dist/kingtable.js`; and the minified source `/dist/kingtable.js`
 
 ## Code organization
 * Source ES6 code is contained in `source\code` folder
