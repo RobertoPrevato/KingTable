@@ -17,7 +17,7 @@ The previous version of the KingTable library is available at: [https://github.c
 
 ## Documentation
 Refer to the [wiki page](https://github.com/RobertoPrevato/KingTable/wiki).
-A full list of possible options is available inside the dedicated [wiki page](https://github.com/RobertoPrevato/KingTable/wiki/Options).
+A full list of possible options is available inside the dedicated [Options page](https://github.com/RobertoPrevato/KingTable/wiki/Options).
 
 ### Features of the new version
 Following is a table listing the features that were added to KingTable 2.0.
