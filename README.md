@@ -90,37 +90,15 @@ When receiving an AJAX response, a normal table expects to receive the following
 }
 ```
 ## Usability
-The KingTable library is designed to follow "old-school" design principles
+The KingTable library includes a number of features to improve usability, both for final user and for programmers using the library:
 * the user should be able to immediately understand the size of the collection, so the pagination bar is designed to display the total amount of rows; of pages, and the number of results currently displayed
-* keyboard navigation: the KingTable controls can be navigated using the TAB; it is possible to navigate through pages using the left, right, A and D keys
+* all filters are automatically stored in storage (configurable `sessionStorage`, `localStorage` or compatible object) and persisted upon page refresh - filters are collected by URL and, if possible, table id
+* the above include: page number, page size, sorting criteria, text search and additional filters that can be implemented by programmer
+* data is stored for a configurable amount of milliseconds, to avoid useless AJAX calls (LRU caching mechanism)
 * support for browser navigation buttons
-* the table logic handles ajax errors and displays a preloader while fetching data
+* ajax errors and loading state are automatically handled
 
-### Inline editing feature
-The KingTable library doesn't offer built-in inline editing feature.
-This is intentional, since in most situations we deal with complex objects that cannot be easily edited inline.
-In any case, the library makes it easy to configure HTML and event handlers to implement inline editing feature,
-for example:
-```js
-//example of custom logic to implement inline-editing feature
-var table = new KingTable({
-  element:  document.getElementById("my-table"),
-  url: "/api/colors",
-  events: {
-    "click .edit-btn": function (e, item) {
-      // e.currentTarget is the clicked element
-      // item is the item related to the clicked element
-      // implement here your logic to display HTML controls to edit the clicked item (second parameter)
-    }
-  },
-  fields: {
-    edit: {
-      name: "edit-btn",
-      html: function (item) { return "<button class='edit-btn'>Edit</button>"; }
-    }
-  }
-});
-```
+For further information, refer to the [dedicated wiki page](https://github.com/RobertoPrevato/KingTable/wiki/About-usability).
 
 ## About localization
 For full information, refer to the [dedicated wiki page](https://github.com/RobertoPrevato/KingTable/wiki/Implementing-localization).
