@@ -6,6 +6,7 @@ Supports client and server side pagination; client and server side search; custo
 * Allow the implementation of administrative tables with the [smallest amount of code possible](https://github.com/RobertoPrevato/KingTable/wiki/Minimum-effort).
 * Allow for easy customization of generated HTML, to adapt to different needs: e.g. displaying pictures thumbnails, anchor tags, etc.
 * Support both collections that require server side pagination, and collections that don't require server side pagination, but may still benefit from client side pagination.
+* Avoid dependencies from third party libraries, to be reusable with any other kind of library (it's plain vanilla JavaScript)
 
 ## Live demo
 The following demos are available online:
