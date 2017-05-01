@@ -1,7 +1,7 @@
 This folder contains distribution files.
 
 ## JS
-The file `kingtable.js` is minified and transpiled from ES6 source code, it can be included in projects in classic way (e.g. downloading it and loading it using a script tag). To work with ES6 source code, look at [https://github.com/RobertoPrevato/KingTable/tree/master/source/gulp](https://github.com/RobertoPrevato/KingTable/tree/master/source/gulp).
+The file `kingtable.js` is minified and transpiled from ES6 source code, it can be included in projects in classic way (i.e. downloading it and loading it using a script tag). To work with ES6 source code, look at [https://github.com/RobertoPrevato/KingTable/tree/master/source/gulp](https://github.com/RobertoPrevato/KingTable/tree/master/source/gulp).
 
 ## CSS
 CSS files are organized inside the `styles` folder.
