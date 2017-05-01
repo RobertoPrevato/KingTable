@@ -9,9 +9,11 @@ Supports client and server side pagination; client and server side search; custo
 
 ## Live demo
 The following demos are available online:
-* [Colors demo](https://robertoprevato.github.io/demos/kingtable/colors.html)
-* [People demo](https://robertoprevato.github.io/demos/kingtable/people.html)
-> TODO (work in progress)
+* [Index of demos](https://robertoprevato.github.io/demos/kingtable/index.html)
+* [Colors demo (rich HTML)](https://robertoprevato.github.io/demos/kingtable/colors.html)
+* [People demo (rich HTML)](https://robertoprevato.github.io/demos/kingtable/people.html)
+* [People demo (plain HTML, without handlers)](https://robertoprevato.github.io/demos/kingtable/people-html.html)
+* [People demo (plain text)](https://robertoprevato.github.io/demos/kingtable/people-plain.html)
 
 ## Previous version
 The previous version of the KingTable library is available at: [https://github.com/RobertoPrevato/jQuery-KingTable](https://github.com/RobertoPrevato/jQuery-KingTable).
