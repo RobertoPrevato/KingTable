@@ -24,7 +24,7 @@ export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {
    */
   constructor(table) {
     super(table)
-    this.options = _.extend({}, table.options);
+    this.options = _.extend({}, table ? table.options : null);
     this.setListeners();
   }
 

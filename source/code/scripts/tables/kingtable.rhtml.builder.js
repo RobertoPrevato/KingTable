@@ -190,7 +190,16 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
       searchDelay: 50,
       sortMode: SortModes.Simple,
       allowSortModes: true, // whether to allow selecting sort mode
-      purist: false         // whether to exclude event and other DOM data in high level callbacks
+      purist: false,         // whether to exclude event and other DOM data in high level callbacks
+
+      // Permits to specify the options of the results per page select
+      resultsPerPageSelect: [10, 30, 50, 100, 200],
+
+      // Permits to specify extra tools for this table
+      tools: null,
+
+      // Whether to automatically highlight values that answer to text search criteria.
+      autoHighlightSearchProperties: true
     };
   }
 
@@ -544,7 +553,13 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
       anchorTimeInfo = `${reg.anchorTime} ${dataAnchorTime}`;
     }
     var advancedFilters = reg.advancedFilters;
-
+    var searchElement = o.allowSearch ? new VHtmlElement("span", {
+          "class": "pagination-bar-filters"
+        }, new VHtmlElement("input", {
+          "type": "text",
+          "class": "search-field",
+          "value": table.searchText || ""
+        })) : null;
     var span = "span", separator = new VHtmlElement(span, {"class": "separator"});
     return new VHtmlElement("div", {
       "class": "pagination-bar",
@@ -621,14 +636,8 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
         anchorTimeInfo ? new VHtmlElement(span, {
           "class": "valigned anchor-timestamp-info"
         }, new VTextElement(anchorTimeInfo)) : null,
-        separator,
-        new VHtmlElement("span", {
-          "class": "pagination-bar-filters"
-        }, new VHtmlElement("input", {
-          "type": "text",
-          "class": "search-field",
-          "value": table.searchText || ""
-        })),
+        searchElement ? separator : null,
+        searchElement,
         filtersViewExpandable ? separator : null,
         filtersViewExpandable ? new VHtmlElement("button", {
           "class": "btn valigned camo-btn kt-advanced-filters" + (filtersViewOpen ? " kt-open" : "")
@@ -1136,7 +1145,7 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
       "change .pagination-bar-results-select": "changeResultsNumber",
       "click .kt-advanced-filters": "toggleAdvancedFilters",
       "click .btn-clear-filters": "clearFilters",
-      "click .king-table-head th": "sort",
+      "click .king-table-head th.sortable": "sort",
       "keyup .search-field": "onSearchKeyUp",
       "paste .search-field, cut .search-field": "onSearchChange",
       "keyup .filters-region input[type='text']": "viewToModel",

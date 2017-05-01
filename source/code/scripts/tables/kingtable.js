@@ -42,112 +42,54 @@ const VERSION = "2.0.0"
 
 const DEFAULTS = {
 
-  /**
-   * Table language.
-   */
+  
+  // Table language.
   lang: "en",
 
-  /**
-   * Table caption.
-   */
+  // Table caption.
   caption: null,
 
-  /**
-   * Whether to display the item number or not.
-   */
+  // Whether to display the item number or not.
   itemCount: true,
 
-  /**
-   * Default schema for each table column.
-   */
+  // Default schema for each table column.
   columnDefault: {
     name: "",
     type: "text",
-    groupable: true,
     sortable: true,
-    resizable: true,
     allowSearch: true,
     hidden: false
+    // secret: undefined
+    // format: undefined (allows to define formatting function) 
   },
 
-  /**
-   * Whether to allow search, or not.
-   */
+  // Whether to allow search, or not.
   allowSearch: true,
 
-  /**
-   * Minimum number of characters inside the search field to trigger a search.
-   */
+  // Minimum number of characters inside the search field to trigger a search.
   minSearchChars: 3,
 
-  /**
-   * The query string to use, when storing the search inside the query string.
-  * */
-  searchQueryString: "search",
-
-  /**
-   * The query string to use, when storing the results per page number in the query string.
-   */
-  resultsPerPageQueryString: "size",
-
-  /**
-   * The local storage key, to use when storing the results per page settings.
-   */
-  resultsPerPageStorageKey: "kt-results-per-page",
-
-  /**
-   * The local storage key, to use when storing the columns order.
-   */
-  columnsOrderStorageKey: "kt-columns-order",
-
-  /**
-   * The query string to use, when storing the page inside the query string.
-   */
-  pageQueryString: "page",
-
-  /**
-   * Default first page.
-   */
+  // Default first page.
   page: 1,
 
-  /**
-   * Default page size
-   */
+  // Default page size
   resultsPerPage: 30,
-
-  // Permits to specify the options of the results per page select
-  resultsPerPageSelect: [10, 30, 50, 100, 200],
-
-  // Permits to specify extra tools for this table
-  tools: null,
-
-  /**
-   * Whether to automatically highlight values that answer to text search criteria.
-   */
-  autoHighlightSearchProperties: true,
 
   // Suffix to use for formatted properties
   formattedSuffix: "_(formatted)",
 
-  //permits to specify whether the collection is fixed or not
-  //default changes if the table is instantiated passing a collection
+  // Permits to specify whether the collection is fixed or not
+  // default changes if the table is instantiated passing a collection
   fixed: undefined,
 
-  //permits to specify an initial search when generating the table for the first time
+  // Permits to specify an initial search when generating the table for the first time
   search: '',
 
-  //permits to specify the search mode to use during live search
-  //FullString, SplitWords or SplitSentences
+  // Permits to specify the search mode to use during live search
+  // FullString, SplitWords or SplitSentences
   searchMode: "FullString",
 
-  /**
-   * Whether the table should automatically refresh itself, when a filter changes; or not.
-   */
-  autorefresh: true,
-
-  /**
-   * Default export formats.
-   */
+  // Default export formats.
   exportFormats: [
     {
       name: "Csv",
@@ -169,85 +111,37 @@ const DEFAULTS = {
     }
   ],
 
-  /**
-   * Whether to prettify xml when exporting, or not.
-   */
+  // Whether to prettify xml when exporting, or not.
   prettyXml: true,
 
-  /**
-   * Allows to specify csv serialization options
-   */
+  // Allows to specify csv serialization options
   csvOptions: {},
 
-  /**
-   * Whether to include hidden properties in the export; or not.
-   */
+  // Whether to include hidden properties in the export; or not.
   exportHiddenProperties: false,
 
-  /**
-   * Whether to go to the first page upon an hard refresh, or not
-   */
-  firstPageOnRefresh: true,
-
-  /**
-   * Whether to allow columns sorting or not.
-   */
-  allowColumnsSorting: true,
-
-  /**
-   * Kind of builder.
-   */
+  // Kind of builder.
   builder: "rhtml",
 
-  /**
-   * Kind of builders by name.
-   */
-  builders: {
-    "text": KingTableTextBuilder,
-    "html": KingTableHtmlBuilder,
-    "rhtml": KingTableRichHtmlBuilder
-  },
-
-  /**
-   * Kind of export functions.
-   */
-  exports: {
-    "text": null,
-    "csv": null, // client side CSV (???)
-    "excel": null, // TODO: possibility to export more items than those that are displayed on the page.
-  },
-
-  /**
-   * Whether to store data returned by `getTableData` function, or not.
-   * If true, data is stored in memory and in data storage for later use.
-   */
+  // Whether to store data returned by `getTableData` function, or not.
+  // If true, data is stored in memory and in data storage for later use.
   storeTableData: true,
 
-  /**
-   * The LRU cache size (how many items per key can be stored).
-   */
+  // The LRU cache size (how many items per key can be stored).
   lruCacheSize: 10,
 
-  /**
-   * The LRU cache max age in milliseconds - default 15 minutes; (<= 0 for no expiration).
-   */
+  // The LRU cache max age in milliseconds - default 15 minutes; (<= 0 for no expiration).
   lruCacheMaxAge: 60*1e3*15,
 
-  /**
-   * Whether the anchor timestamp should be shown or not
-   */
+  // Whether the anchor timestamp should be shown or not
   showAnchorTimestamp: true,
 
   collectionName: "data",
 
-  /**
-   * When text search is used, its sort logic takes precedence over the sort criteria defined clicking on columns.
-   */
+  // When text search is used, its sort logic takes precedence over the sort criteria defined clicking on columns.
   searchSortingRules: true,
 
-  /**
-   * The name of the property that should be used as id.
-   */
+  // The name of the property that should be used as id.
   idProperty: null
 }
 
@@ -493,7 +387,7 @@ class KingTable extends EventsEmitter {
       raise(8, "name cannot be null or empty");
     var self = this,
         o = self.options,
-        builders = o.builders;
+        builders = KingTable.builders;
     if (self.builder) {
       self.builder.dispose();
     }
@@ -1419,6 +1313,11 @@ class KingTable extends EventsEmitter {
           resolve(subset);
         }
       }, function fail() {
+        // check if there is a newer call to function
+        if (timestamp < self.lastFetchTimestamp) {
+          // do nothing because there is a newer call to loadData
+          return;
+        }
         self.emit("fetch:fail").onFetchFail();
         reject();
       }).then(function always() {
