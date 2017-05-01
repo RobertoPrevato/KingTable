@@ -1513,7 +1513,7 @@ class KingTable extends EventsEmitter {
       return false;
 
     var searchable = _.where(self.columns, col => {
-      return col.allowSearch;
+      return col.allowSearch && (!col.secret); // exclude secret columns
     });
     //
     // When searching, it's desirable to search inside string representations of

@@ -24,7 +24,7 @@ export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {
    */
   constructor(table) {
     super(table)
-    this.options = {};
+    this.options = _.extend({}, table.options);
     this.setListeners();
   }
 
@@ -407,5 +407,6 @@ export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {
     }
     this.stopListening(this.table);
     this.table = null;
+    delete this.options;
   }
 }
