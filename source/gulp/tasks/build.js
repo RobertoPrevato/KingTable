@@ -46,18 +46,19 @@ gulp.task("dist", () => {
       }))
       .pipe(gulp.dest(config.distFolder));
   });
-  config.lessToCss.forEach(o => {
+  var allLess = config.lessToCss.concat(config.lessToCssExtras);
+  allLess.forEach(o => {
     if (o.nodist) return;
     var source = o.src, dest = o.dest;
     gulp.src(source) // path to your files
       .pipe(less().on(_error_, err => console.log(err)))
       .pipe(cssmin().on(_error_, err => console.log(err))) // always minify CSS, remove temptation of editing css directly
-      .pipe(gulp.dest(config.distFolder));
+      .pipe(gulp.dest(config.cssDistFolder));
   });
 });
 
 // Build for distribution (with uglify)
-gulp.task("js-dist", () => {
+gulp.task("js-min", () => {
   //NB: the following lines are working examples of source mapping generation and js minification
   //they are commented on purpose, to keep the build process fast during development
   config.esToJs.forEach(o => {
@@ -75,7 +76,7 @@ gulp.task("js-dist", () => {
   });
 });
 
-gulp.task("css-build", () => {
+gulp.task("css-min", () => {
   config.lessToCss.forEach(o => {
     var source = o.src, dest = o.dest;
     gulp.src(source) // path to your files
@@ -132,6 +133,6 @@ gulp.task("watch-es", watch => {
   });
 });
 
-gulp.task("dev-init", ["js-build", "css-build", "copy-static"]);
+gulp.task("dev-init", ["js-build", "css-min", "copy-static"]);
 
-gulp.task("env-init", ["js-dist", "css-build", "copy-static"]);
+gulp.task("env-init", ["js-dist", "css-min", "copy-static"]);

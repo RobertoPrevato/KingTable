@@ -25,6 +25,7 @@ module.exports = {
   lessRoot: "./code/styles/**/*.less",
 
   distFolder: "../dist/",
+  cssDistFolder: "../dist/styles/",
 
   license: LICENSE,
   version: VERSION,
@@ -41,6 +42,29 @@ module.exports = {
     }
   ],
   
+  lessToCssExtras: [
+    {
+      src: "./code/styles/kingtable/kingtable.core.less",
+      dest: CSS_DEST
+    },
+    {
+      src: "./code/styles/kingtable/kingtable.flatblack.less",
+      dest: CSS_DEST
+    },
+    {
+      src: "./code/styles/kingtable/kingtable.midnight.less",
+      dest: CSS_DEST
+    },
+    {
+      src: "./code/styles/kingtable/kingtable.clear.less",
+      dest: CSS_DEST
+    },
+    {
+      src: "./code/styles/kingtable/kingtable.dark.less",
+      dest: CSS_DEST
+    }
+  ],
+
   esToJs: [
     {
       entry: "./code/scripts/tables/kingtable.js",
