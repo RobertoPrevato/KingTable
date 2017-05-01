@@ -106,10 +106,10 @@ Please refer to the dedicated [wiki page](https://github.com/RobertoPrevato/King
 * The *dist* folder contains the bundled source code `/dist/kingtable.js`; and the minified source `/dist/kingtable.js`
 
 ## Code organization
-* Source ES6 code is contained in `source\code` folder
-* Unit tests are contained in `source\code\tests` folder
+* Source ES6 code is contained in `source/code` folder
+* Unit tests are contained in `source/code/tests` folder
 
 ## Dependencies
-* [OPEN iconic](https://github.com/iconic/open-iconic)
+* [Open Iconic](https://github.com/iconic/open-iconic)
 * [Native Promise, or native-compatible Promise polyfill](https://github.com/stefanpenner/es6-promise)
 
