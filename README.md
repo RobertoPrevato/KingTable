@@ -17,6 +17,8 @@ The following demos are available online:
 
 Note how filters are automatically persisted upon page refresh. For example, using the search feature or changing page in one of the rich HTML demos, and then hitting F5. When searching, note how client side search algorithm also sorts results by relevance (number of occurrences, order of properties that generate a match).
 
+**NB:** all these demos are [*fixed tables*](https://github.com/RobertoPrevato/KingTable/wiki/Working-modes#fixed-mode): tables that have all information loaded in memory, paginated and filtered on the client side. To see examples of tables paginated using AJAX requests (on the server side), see the [dedicated documentation](https://github.com/RobertoPrevato/KingTable/wiki/How-to-integrate-in-your-project#how-to-integrate-with-server-side-code) and [development server](https://github.com/RobertoPrevato/KingTable/tree/master/servers/flask) provided in the repository.
+
 ## Previous version
 The previous version of the KingTable library is available at: [https://github.com/RobertoPrevato/jQuery-KingTable](https://github.com/RobertoPrevato/jQuery-KingTable).
 
