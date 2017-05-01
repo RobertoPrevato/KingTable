@@ -110,6 +110,6 @@ Please refer to the dedicated [wiki page](https://github.com/RobertoPrevato/King
 * Unit tests are contained in `source/code/tests` folder
 
 ## Dependencies
-* [OPEN iconic](https://github.com/iconic/open-iconic)
+* [Open Iconic](https://github.com/iconic/open-iconic)
 * [Native Promise, or native-compatible Promise polyfill](https://github.com/stefanpenner/es6-promise)
 
