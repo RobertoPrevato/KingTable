@@ -15,6 +15,8 @@ The following demos are available online:
 * [People demo (plain HTML, without handlers)](https://robertoprevato.github.io/demos/kingtable/people-html.html)
 * [People demo (plain text)](https://robertoprevato.github.io/demos/kingtable/people-plain.html)
 
+Note how filters are automatically persisted upon page refresh. For example, using the search feature or changing page in one of the rich HTML demos, and then hitting F5. When searching, note how client side search algorithm also sorts results by relevance (number of occurrences, order of properties that generate a match).
+
 ## Previous version
 The previous version of the KingTable library is available at: [https://github.com/RobertoPrevato/jQuery-KingTable](https://github.com/RobertoPrevato/jQuery-KingTable).
 
