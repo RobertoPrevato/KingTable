@@ -265,6 +265,7 @@ class KingTable extends EventsEmitter {
    */
   constructor(options, staticProperties) {
     super();
+    options = options || {};
     var self = this;
     //
     // The second argument allows to override properties of the KingTable instance.
@@ -281,6 +282,11 @@ class KingTable extends EventsEmitter {
         delete options[x];
       }
     });
+    var sortBy = options.sortBy;
+    if (_.isString(sortBy)) {
+      self.sortCriteria = A.getSortCriteria(sortBy);
+    }
+
     // Set options
     options = self.options = _.extend({}, KingTable.defaults, options);
     self.loading = false;
@@ -303,8 +309,7 @@ class KingTable extends EventsEmitter {
       "getExtraFilters",  //
       "getTableData",     // function to get required data to render the table
       "afterRender",      // function to execute after render
-      "beforeRender",     // function to execute before render
-      "sortBy"            // sort criteria
+      "beforeRender"     // function to execute before render
     ];
   }
 

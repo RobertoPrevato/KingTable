@@ -144,6 +144,22 @@ export default {
   },
 
   /**
+   * Returns a value indicating whether the given string starts with the second
+   * given string.
+   * 
+   * @param {string} String to check
+   * @param {string} Start value
+   * @param {boolean} Case insensitive?
+   */
+  startsWith(a, b, ci) {
+    if (!a || !b) return false;
+    if (ci) {
+      return a.toLowerCase().indexOf(b) == 0;
+    }
+    return a.indexOf(b) == 0;
+  },
+
+  /**
    * Returns a new string of the given length, right filled with the given
    * filler character.
    */

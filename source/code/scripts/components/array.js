@@ -93,10 +93,31 @@ export default {
   options,
 
   /**
+   * Parses a sort by string, converting it into an array of arrays.
+   * 
+   * @param {string} s, string to sort
+   */
+  parseSortBy(s) {
+    if (!s) return;
+    var parts = s.split(/\s*,\s*/g);
+    return _.map(parts, part => {
+      var a = part.split(/\s/), name = a[0], order = a[1] || "asc";
+      return [name, StringUtils.startsWith(order, "asc", true) ? 1 : -1];
+    });
+  },
+
+  /**
    * Gets sort criteria from given arguments.
    */
   getSortCriteria(args) {
     var al = args.length, props;
+    
+    if (args.length == 1) {
+      var firstParameter = args[0];
+      if (_.isString(firstParameter) && firstParameter.search(/,|\s/) > -1)
+      return this.parseSortBy(firstParameter);
+    }
+
     if (al > 1) {
       // passing multiple property names sortBy(a, "aa", "bb", "cc");
       var a = _.toArray(args);

@@ -41,3 +41,4 @@ jspm_packages
 httpdocs/*
 .vscode/*
 demos/*
+/source/copy_to_demo.sh

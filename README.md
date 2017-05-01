@@ -30,6 +30,7 @@ Following is a table listing the features that were added to KingTable 2.0.
 | Removed dependencies                | Removed dependency from jQuery, Lodash, I.js, R.js.                                                                                                                |
 | Improved exceptions                 | Raised exceptions include a link to GitHub wiki with detailed instructions.                                                                                        |
 | LRU cache                           | _Least Recently Used_ caching mechanism to cache the last _n_ pages by filters, to reduce number of AJAX requests.                                                 |
+| Table data fetch logic              | Allows to define functions that return data required to render the table itself (e.g. dictionaries for custom filters views)                                       |
 | Caching of filters                  | Filters for each table are cached using client side storage (configurable), so they are persisted upon page refresh.                                               |
 | Improved _CS_ sorting               | Strings that can be sorted like numbers (like "25%", "25.40 EUR", "217°") are automatically parsed as numbers when sorting.                                        |
 | Improved _CS_ sorting               | Client side sorting by multiple properties.                                                                                                                        |

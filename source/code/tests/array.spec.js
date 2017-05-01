@@ -832,6 +832,20 @@ describe("Array utilities", () => {
     expect(a instanceof Array).toEqual(true, "returned object must be an array");
     expect(a.length).toEqual(1, "1 item in PEOPLE_2 contain the letters 'Luk' --> 'Łukasz'");
   })
+
+  it("must parse order by strings in SQL style", () => {
+    var a = A.parseSortBy("name");
+    expect(a).toEqual([["name", 1]]);
+
+    var a = A.parseSortBy("name desc");
+    expect(a).toEqual([["name", -1]]);
+
+    var a = A.parseSortBy("name, age desc");
+    expect(a).toEqual([["name", 1], ["age", -1]]);
+
+    var a = A.parseSortBy("name desc, age desc");
+    expect(a).toEqual([["name", -1], ["age", -1]]);
+  })
 });
 
 /*
