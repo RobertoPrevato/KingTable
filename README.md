@@ -15,6 +15,8 @@ The following demos are available online:
 * [People demo (rich HTML)](https://robertoprevato.github.io/demos/kingtable/people.html)
 * [People demo (plain HTML, without handlers)](https://robertoprevato.github.io/demos/kingtable/people-html.html)
 * [People demo (plain text)](https://robertoprevato.github.io/demos/kingtable/people-plain.html)
+* [How to display pictures](https://robertoprevato.github.io/demos/kingtable/default-by-type.html)
+* [Formatting of amounts and currencies](https://robertoprevato.github.io/demos/kingtable/default-by-name.html)
 
 Note how filters are automatically persisted upon page refresh. For example, using the search feature or changing page in one of the rich HTML demos, and then hitting F5. When searching, note how client side search algorithm also sorts results by relevance (number of occurrences, order of properties that generate a match).
 
@@ -105,16 +107,6 @@ The KingTable library includes logic to implement client side localization, whic
 
 ## How to integrate with your project
 Please refer to the dedicated [wiki page](https://github.com/RobertoPrevato/KingTable/wiki/How-to-integrate-in-your-project), for instructions on how to integrate with your project and with server side code.
-
-## Repository structure
-* The *source* folder contains library source code and tasks related code
-* The *httpdocs* folder is a container for built code, when testing using the provided example server
-* The *servers* folder is meant to contain development servers; currently a single a development server written in Python, using the wonderful [Flask framework](http://flask.pocoo.org/)
-* The *dist* folder contains the bundled source code `/dist/kingtable.js`; and the minified source `/dist/kingtable.js`
-
-## Code organization
-* Source ES6 code is contained in `source/code` folder
-* Unit tests are contained in `source/code/tests` folder
 
 ## Dependencies
 * [Open Iconic](https://github.com/iconic/open-iconic)
