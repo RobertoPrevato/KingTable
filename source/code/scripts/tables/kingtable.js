@@ -142,7 +142,10 @@ const DEFAULTS = {
   searchSortingRules: true,
 
   // The name of the property that should be used as id.
-  idProperty: null
+  idProperty: null,
+
+  // Whether searched values should be automatically highlighted
+  autoHighlightSearchProperties: true
 }
 
 if (typeof Promise == "undefined") {
@@ -266,61 +269,6 @@ class KingTable extends EventsEmitter {
     return {
       "memory": MemStore
     }
-  }
-
-  // global object containing defaults by type and name: these objects are designed to be extended during library setup
-  static get Schemas() {
-    return {
-      /**
-       * Default columns properties, by field value type.
-       * This object is meant to be extended by implementers; following their personal preferences.
-       */
-      DefaultByType: {
-        number: function (columnSchema, objSchema) {
-          return {
-            format: function (value) {
-              // NB: this function is used only if a formatter function is not
-              // defined for the given property; so here we suggest a format that makes sense for the value.
-              return N.format(value);
-            }
-          };
-        },
-        date: function (columnSchema, objSchema) {
-          return {
-            format: function dateFormatter(value) {
-              // NB: this function is used only if a formatter function is not
-              // defined for the given property; so here we suggest a format that makes sense for the value.
-
-              // support date format defined inside column schema
-              // use a format that makes sense for the value
-              // if the date has time component, use format that contains time; otherwise only date part
-              var hasTime = KingTable.DateUtils.hasTime(value);
-              var format = KingTable.DateUtils.defaults.format[hasTime ? "long" : "short"];
-              return KingTable.DateUtils.format(value, format);
-            }
-          };
-        }
-      },
-
-      /**
-       * Default columns properties, by field name.
-       * This object is meant to be extended by implementers; following their personal preferences.
-       */
-      DefaultByName: {
-        id: {
-          name: "id",
-          type: "id",
-          hidden: true,
-          secret: true
-        },
-        guid: {
-          name: "guid",
-          type: "guid",
-          hidden: true,
-          secret: true
-        }
-      }
-    };
   }
 
   /**
@@ -570,7 +518,9 @@ class KingTable extends EventsEmitter {
       var a = KingTable.Schemas.DefaultByType;
       if (_.has(a, type)) {
         //default schema by type
-        _.extend(base, a[type].call(self, schema, objSchema));
+        var def = a[type];
+        if (_.isFunction(def)) def = def.call(self, schema, objSchema);
+        _.extend(base, def);
       }
       //set default properties by name
       a = KingTable.Schemas.DefaultByName;
@@ -1970,6 +1920,63 @@ class KingTable extends EventsEmitter {
     this.disposables = [];
   }
 }
+
+// Extend KingTable object with properties that are meant to be globally available and editable
+// for users of the library (programmers)
+// NB: static get Schemas() wouldn't work because the object would not be editable.
+//
+KingTable.Schemas = {
+  /**
+   * Default columns properties, by field value type.
+   * This object is meant to be extended by implementers; following their personal preferences.
+   */
+  DefaultByType: {
+    number: function (columnSchema, objSchema) {
+      return {
+        format: function (value) {
+          // NB: this function is used only if a formatter function is not
+          // defined for the given property; so here we suggest a format that makes sense for the value.
+          return N.format(value);
+        }
+      };
+    },
+    date: function (columnSchema, objSchema) {
+      return {
+        format: function dateFormatter(value) {
+          // NB: this function is used only if a formatter function is not
+          // defined for the given property; so here we suggest a format that makes sense for the value.
+
+          // support date format defined inside column schema
+          // use a format that makes sense for the value
+          // if the date has time component, use format that contains time; otherwise only date part
+          var hasTime = KingTable.DateUtils.hasTime(value);
+          var format = KingTable.DateUtils.defaults.format[hasTime ? "long" : "short"];
+          return KingTable.DateUtils.format(value, format);
+        }
+      };
+    }
+  },
+
+  /**
+   * Default columns properties, by field name.
+   * This object is meant to be extended by implementers; following their personal preferences.
+   */
+  DefaultByName: {
+    id: {
+      name: "id",
+      type: "id",
+      hidden: true,
+      secret: true
+    },
+    guid: {
+      name: "guid",
+      type: "guid",
+      hidden: true,
+      secret: true
+    }
+  }
+};
+
 
 // Pollute the window namespace with the KingTable object,
 // this is intentional, so the users of the library that don't work with ES6, yet,

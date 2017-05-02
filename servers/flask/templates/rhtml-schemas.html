@@ -1,0 +1,79 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable schemas demo
+{%- endblock -%}
+{%- block body -%}
+{% include "partials/themes.html" %}
+<div id="one"></div>
+<hr>
+<div id="two"></div>
+{%- endblock -%}
+{%- block js -%}
+<script>
+(function () {
+  
+  // The following example shows how to display currency close to amount,
+  // to demonstrate the use of KingTable.Schemas.DefaultByName extensibility
+  // point
+
+  var data = [
+    { amount: 10.45, currency: "PLN" },
+    { amount: 100.50, currency: "EUR" },
+    { amount: 54.45, currency: "PLN" },
+    { amount: 22.30, currency: "EUR" },
+    { amount: 65.45, currency: "PLN" },
+    { amount: 70.45, currency: "DKK" },
+    { amount: 80.45, currency: "DKK" }
+  ];
+
+  // extend schemas with default configuration by property name
+  KingTable.Schemas.DefaultByName.amount = {
+    format: function (value, item) {
+      // NB: internally it utilizes the Intl.NumberFormat HTML5 API to format
+      // numbers (it could be unavailable in certain browsers)
+      return KingTable.NumberUtils.format(value) + " " + item.currency;
+    }
+  };
+
+  var table = window.table = new KingTable({
+    id: "one",
+    data: data,
+    caption: "KingTable - DefaultByName demo",
+    element: document.getElementById("one"),
+    columns: {
+      currency: { secret: true } // hide currency property, to not display it twice
+    }
+  });
+
+  table.render();
+  
+  // example with default by type
+  var data2 = [
+    { avatar: "http://i.pravatar.cc/200?img=1" },
+    { avatar: "http://i.pravatar.cc/200?img=2" },
+    { avatar: "http://i.pravatar.cc/200?img=3" },
+    { avatar: "http://i.pravatar.cc/200?img=4" },
+    { avatar: "http://i.pravatar.cc/200?img=5" }
+  ];
+
+  // extend schemas with default configuration by property name
+  KingTable.Schemas.DefaultByType.thumbnail = {
+    html: function (item, value) {
+      return "<img src='" + value + "'>";
+    }
+  };
+
+  var table2 = window.table2 = new KingTable({
+    id: "two",
+    data: data2,
+    caption: "KingTable - DefaultByType demo",
+    element: document.getElementById("two"),
+    columns: {
+      avatar: { type: "thumbnail" } // set the type of the property
+    }
+  });
+
+  table2.render();
+})();
+</script>
+{%- endblock -%}
