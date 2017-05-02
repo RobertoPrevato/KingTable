@@ -198,6 +198,9 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
       // Permits to specify extra tools for this table
       tools: null,
 
+      // Allows to alter tools before render
+      prepTools: null,
+
       // Whether to automatically highlight values that answer to text search criteria.
       autoHighlightSearchProperties: true
     };
@@ -801,14 +804,36 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
   }
 
   buildMenu() {
-    var self = this, o = self.options;
+    var self = this, 
+      o = self.options, 
+      extraTools = o.tools;
+    
+    var tools = [
+      self.getColumnsMenuSchema(),
+      self.getViewsMenuSchema(),
+      o.allowSortModes ? self.getSortModeSchema() : null,
+      self.getExportMenuSchema()
+    ];
+
+    if (extraTools) {
+      if (_.isFunction(extraTools)) extraTools = extraTools.call(this);
+      if (extraTools) {
+        if (!_.isArray(extraTools)) {
+          raise(40, "Tools is not an array or a function returning an array.");
+        }
+        tools = tools.concat(extraTools);
+      }
+    }
+
+    if (o.prepTools) {
+      if (!_.isFunction(o.prepTools)) {
+        raise(41, "prepTools option must be a function.");
+      }
+      o.prepTools.call(this, tools);
+    }
+
     return menuBuilder({
-        items: [
-        self.getColumnsMenuSchema(),
-        self.getViewsMenuSchema(),
-        o.allowSortModes ? self.getSortModeSchema() : null,
-        self.getExportMenuSchema()
-      ]
+        items: tools
     });
   }
 

@@ -52,7 +52,7 @@
 </script>
 <script>
 (function () {
-  
+
   var table = window.table = new KingTable({
     id: "colors-table",
     data: COLORS,
@@ -79,10 +79,7 @@
     itemDecorator: (item) => { // allows to define HTML properties for each item
       return {"style": "background-color: " + item.color};
     },*/
-    _onItemClick: (item, e) => {
-      console.log(item);
-    },
-    //filtersView: "colors-filters",
+    filtersView: "colors-filters",
     //views: [ // verifies that it's possible to change table views
     //  {name:"table", resolver: true}
     //],
