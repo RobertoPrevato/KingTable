@@ -83,8 +83,13 @@ class VXmlElement {
     for (var i = 0, l = children.length; i < l; i++) {
       var child = children[i];
       if (!child) continue;
-      if (!child.hidden) {
-        s += child.toString(indent, indentChar, level + 1);
+      // support HTML fragments
+      if (typeof child == "string") {
+        s += (indentString + child + "\n");
+      } else {
+        if (!child.hidden) {
+          s += child.toString(indent, indentChar, level + 1);
+        }
       }
     }
     if (children && children.length) {

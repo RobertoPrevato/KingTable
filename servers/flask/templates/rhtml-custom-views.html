@@ -1,0 +1,79 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable views demo
+{%- endblock -%}
+{%- block body -%}
+{% include "partials/themes.html" %}
+<div id="main"></div>
+{%- endblock -%}
+{%- block js -%}
+<style>
+  .welcome-view {
+    font-size: 50px;color:darkgreen;text-align:center;
+  }
+  .hello-view {
+    font-size: 50px;color:darkred;text-align:center;
+  }
+</style>
+<script>
+(function () {
+
+  var data = [
+    { amount: 10.45, currency: "PLN" },
+    { amount: 100.50, currency: "EUR" },
+    { amount: 54.45, currency: "PLN" },
+    { amount: 22.30, currency: "EUR" },
+    { amount: 65.45, currency: "PLN" },
+    { amount: 70.45, currency: "DKK" },
+    { amount: 80.45, currency: "DKK" }
+  ];
+
+  var MyCustomViewResolver = function() {};
+
+  MyCustomViewResolver.prototype.buildView = function(table, columns, data) {
+    // use this.table information to build a table like you desire.
+    // subscribe to table events to know when to update the view, display loading view, error view, etc.
+
+    // The function must return an HTML fragment, build it as you prefer
+    // data contains the items to display, with extra information (such as item number)
+    // table is the instance of KingTable; columns contain the items' properties information
+    return "<div class='king-table-body hello-view'><p>Hello World!</p></div>";
+  };
+
+  var WelcomeViewResolver = function() {};
+
+  WelcomeViewResolver.prototype.buildView = function(table, columns, data) {
+    // use this.table information to build a table like you desire.
+    // subscribe to table events to know when to update the view, display loading view, error view, etc.
+
+    // The function must return an HTML fragment, build it as you prefer
+    // data contains the items to display, with extra information (such as item number)
+    // table is the instance of KingTable; columns contain the items' properties information
+    return "<div class='king-table-body welcome-view'><p>Welcome!</p><p>See views under settings menu - cog icon.</p></div>";
+  };
+
+  var view = {
+      name: "Welcome view", // --> used as display name in built menu
+      resolver: WelcomeViewResolver
+  };
+
+  KingTable.RichHtmlBuilder.defaults.views.push(view);
+
+  var table = window.table = new KingTable({
+    data: data,
+    caption: "KingTable - views demo",
+    element: document.getElementById("main"),
+    view: "Welcome view",
+    // extra view to be used for this specific instance of KingTable
+    extraViews: [
+      {
+        name: "Hello World", // --> used as display name in built menu
+        resolver: MyCustomViewResolver
+      }
+    ]
+  });
+
+  table.render();
+})();
+</script>
+{%- endblock -%}

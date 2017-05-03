@@ -12,6 +12,7 @@
  */
 import KingTableTextBuilder from "../../scripts/tables/kingtable.text.builder"
 import KingTableHtmlBuilder from "../../scripts/tables/kingtable.html.builder"
+import KingTableBaseHtmlBuilder from "../../scripts/tables/kingtable.html.base.builder"
 import KingTableRichHtmlBuilder from "../../scripts/tables/kingtable.rhtml.builder"
 import KingTableRegional from "../../scripts/tables/kingtable.regional"
 import EventsEmitter from "../../scripts/components/events"
@@ -148,6 +149,12 @@ const DEFAULTS = {
   autoHighlightSearchProperties: true
 }
 
+const BUILDERS = {
+  "text": KingTableTextBuilder,
+  "html": KingTableHtmlBuilder,
+  "rhtml": KingTableRichHtmlBuilder
+};
+
 if (typeof Promise == "undefined") {
   raise(1, "Missing implementation of Promise (missing dependency)")
 }
@@ -214,10 +221,6 @@ class KingTable extends EventsEmitter {
     return KingTableRegional;
   }
 
-  static get defaults() {
-    return DEFAULTS;
-  }
-
   static get version() {
     return VERSION;
   }
@@ -250,15 +253,27 @@ class KingTable extends EventsEmitter {
     return Paginator;
   }
 
+  static get PlainTextBuilder() {
+    return KingTableTextBuilder;
+  }
+
+  static get HtmlBuilder() {
+    return KingTableHtmlBuilder;
+  }
+
+  static get RichHtmlBuilder() {
+    return KingTableRichHtmlBuilder;
+  }
+
+  static get BaseHtmlBuilder() {
+    return KingTableBaseHtmlBuilder;
+  }
+
   /**
    * Gives access to KingTable builders, to allow overriding their functions.
    */
   static get builders() {
-    return {
-      "text": KingTableTextBuilder,
-      "html": KingTableHtmlBuilder,
-      "rhtml": KingTableRichHtmlBuilder
-    };
+    return BUILDERS;
   }
 
   /**
@@ -1923,8 +1938,10 @@ class KingTable extends EventsEmitter {
 
 // Extend KingTable object with properties that are meant to be globally available and editable
 // for users of the library (programmers)
-// NB: static get Schemas() wouldn't work because the object would not be editable.
+// NB: static get wouldn't work because the object would not be editable.
 //
+KingTable.defaults = DEFAULTS;
+
 KingTable.Schemas = {
   /**
    * Default columns properties, by field value type.

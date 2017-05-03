@@ -135,7 +135,7 @@ function normalizeExtraView(o) {
 }
 
 
-export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
+class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
 
   /**
    * Creates a new instance of KingTableRichHtmlBuilder associated with the given table.
@@ -175,35 +175,6 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
         self.updatePagination();
       }
     });
-  }
-
-  static get defaults() {
-    return {
-      view: "table",
-      views: [
-        {name:"table", resolver: true},
-        {name:"gallery", resolver: KingTableRhGalleryViewResolver}
-      ],
-      filtersView: null, // allows to define a view for advanced filters
-      filtersViewExpandable: true, // whether the advanced filters view should be expandable; or always visible.
-      filtersViewOpen: false, // whether filters view should be automatically displayed, upon table render.
-      searchDelay: 50,
-      sortMode: SortModes.Simple,
-      allowSortModes: true, // whether to allow selecting sort mode
-      purist: false,         // whether to exclude event and other DOM data in high level callbacks
-
-      // Permits to specify the options of the results per page select
-      resultsPerPageSelect: [10, 30, 50, 100, 200],
-
-      // Permits to specify extra tools for this table
-      tools: null,
-
-      // Allows to alter tools before render
-      prepTools: null,
-
-      // Whether to automatically highlight values that answer to text search criteria.
-      autoHighlightSearchProperties: true
-    };
   }
 
   static get BaseHtmlBuilder() {
@@ -1329,3 +1300,32 @@ export default class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
     throw new Error("make targeted updates");
   }
 }
+
+KingTableRichHtmlBuilder.defaults = {
+  view: "table",
+  views: [
+    {name:"table", resolver: true},
+    {name:"gallery", resolver: KingTableRhGalleryViewResolver}
+  ],
+  filtersView: null, // allows to define a view for advanced filters
+  filtersViewExpandable: true, // whether the advanced filters view should be expandable; or always visible.
+  filtersViewOpen: false, // whether filters view should be automatically displayed, upon table render.
+  searchDelay: 50,
+  sortMode: SortModes.Simple,
+  allowSortModes: true, // whether to allow selecting sort mode
+  purist: false,         // whether to exclude event and other DOM data in high level callbacks
+
+  // Permits to specify the options of the results per page select
+  resultsPerPageSelect: [10, 30, 50, 100, 200],
+
+  // Permits to specify extra tools for this table
+  tools: null,
+
+  // Allows to alter tools before render
+  prepTools: null,
+
+  // Whether to automatically highlight values that answer to text search criteria.
+  autoHighlightSearchProperties: true
+};
+
+export default KingTableRichHtmlBuilder;

@@ -81,6 +81,10 @@ def rhtml_colors_page_fixed():
 def rhtml_schemas():
     return render_template("rhtml-schemas.html")
 
+@app.route("/rhtml-views")
+def rhtml_views():
+    return render_template("rhtml-custom-views.html")
+
 @app.route("/rhtml-people-fixed")
 def rhtml_people_page_fixed():
     return render_template("rhtml-people-fixed.html")

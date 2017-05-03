@@ -229,6 +229,25 @@ __</dl>
     expect(a.toString(2, "_").trim()).toEqual(expected);
   })
 
+  it("must allow to mix HTML fragments to VHTML objects", () => {
+    var a = new VHtmlElement("div", {
+      "class": "container"
+    }, [new VHtmlElement("p", null, [
+      "<span>Hello</span><br>",
+      "<span>World</span>"
+    ])]);
+
+    var expected =
+`<div class="container">
+__<p>
+__<span>Hello</span><br>
+__<span>World</span>
+__</p>
+</div>
+`.trim()
+    expect(a.toString(2, "_").trim()).toEqual(expected);
+  })
+
   it("must generate HTML skipping hidden elements", () => {
     var a = new VHtmlElement("div", {}, [
       new VHtmlElement("p", null, new VTextElement("Hello")),
