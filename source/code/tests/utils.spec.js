@@ -21,6 +21,23 @@ describe("Base utilities", () => {
     expect("b" in o).toEqual(true);
   });
 
+  it("must allow to remove value types from arrays (without generating new arrays)", () => {
+    var a = [1, 2, 3, 4, 5];
+    _.removeItem(a, 4);
+    expect(a).toEqual([1, 2, 3, 5]);
+  })
+
+  it("must allow to remove reference types from arrays (without generating new arrays)", () => {
+    var sentinel = {}
+    var a = {}, b = {}, sentinel = {}, c = {}, d = {};
+    var e = [a, b, sentinel, c, d];
+    _.removeItem(e, sentinel);
+    expect(e).toEqual([a, b, c, d]);
+
+    _.removeItem(e, a);
+    expect(e).toEqual([b, c, d]);
+  })
+
   it("must allow to check if objects quacks", () => {
     var a = { quack: function () {} };
     var b = { bark: function () {}, wag: function () {} };

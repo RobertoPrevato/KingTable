@@ -24,6 +24,7 @@ import FileUtils from "../../scripts/data/file"
 // import xml from "../../scripts/data/xml"
 const SPACE = " "
 const CHECKBOX_TYPE = "checkbox"
+const KingTableClassName = "king-table"
 
 function classObj(name) {
   return {"class": name};
@@ -300,18 +301,24 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
       return self;
     }
     var table = self.table,
+        o = self.options,
         element = table.element,
         view = self.buildView(null, null, new VHtmlFragment(" ")),
         caption = self.buildCaption(),
         root = self.buildRoot(caption, view);
     table.emit("empty:element", element);
     $.empty(element);
-    $.addClass(element, "king-table");
+    $.addClass(element, KingTableClassName);
     element.innerHTML = root.toString();
     // add reference to root element
     self.rootElement = $.findFirstByClass(element, "king-table-region");
     // bind events
     self.bindEvents();
+
+    _.ifcall(o.onLayoutRender, self, [element]);
+    if (o.filtersView) {
+      _.ifcall(o.onFiltersRender, self, [$.findFirstByClass(element, "kt-filters")]);
+    }
     return self;
   }
 
@@ -416,6 +423,7 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
    */
   updateView() {
     var self = this,
+      o = self.options,
       table = self.table,
       data = table.pagination,
       rootElement = self.rootElement;
@@ -454,6 +462,7 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
     self.currentItems = data;
     var view = self.buildView(columns, data);
     viewEl.innerHTML = view.children[0].toString();
+    _.ifcall(o.onViewUpdate, self, [viewEl]); // call if exists
     return self;
   }
 
@@ -461,7 +470,7 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
    * Displays a built table.
    */
   display(built) {
-    var table = this.table;
+    var table = this.table, o = this.options;
     // if a table has an element, assume that is a DOM element;
     if (!_.isString(built))
       built = built.toString();
@@ -470,6 +479,7 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
     // update view only
     var viewEl = $.findFirstByClass(root, "king-table-view");
     viewEl.innerHTML = built;
+    _.ifcall(o.onViewUpdate, this, [viewEl]); // call if exists
   }
 
   /**
@@ -1259,11 +1269,15 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
    * Disposes of this KingTableRichHtmlBuilder.
    */
   dispose() {
+    console.info("[*] RHTML DISPOSED!");
     // undelegate events
     this.undelegateEvents().unbindWindowEvents();
+    // remove element
+    $.remove(this.rootElement);
+    $.removeClass(this.table.element, KingTableClassName);
+
     // removes reference to root element (it gets removed from DOM inside base dispose)
-    delete this.rootElement;
-    delete this.currentItems;
+    this.currentItems = this.rootElement = null;
     super.dispose();
   }
 

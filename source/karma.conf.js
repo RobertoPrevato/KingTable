@@ -42,8 +42,7 @@ module.exports = config => {
       "node_modules/intl/locale-data/jsonp/en-GB.js",
       "code/scripts/*.js",
       "code/tests/*.spec.js",
-      "code/scripts/**/*.js",
-      "code/tests/**/*.spec.js"
+      "code/scripts/**/*.js"
     ],
 
     exclude: []

@@ -59,6 +59,18 @@
     caption: "KingTable - colors demo with client side pagination (whole collection in memory)",
     element: document.getElementById("main"),
     sortBy: "name asc",
+    onLayoutRender: function (rootEl) {
+      console.log("On layout render", rootEl);
+    },
+    onFiltersRender: function (filtersViewEl) {
+      console.log("On filters view render", filtersViewEl);
+    },
+    onViewUpdate: function (viewEl) {
+      console.log("On view update", viewEl);
+    },
+    onDispose: function () {
+      console.log("[*] Table disposed!");
+    },
     columns: {
       name: "Name",
       color: {

@@ -155,8 +155,22 @@ const BUILDERS = {
   "rhtml": KingTableRichHtmlBuilder
 };
 
-if (typeof Promise == "undefined") {
-  raise(1, "Missing implementation of Promise (missing dependency)")
+const UNDEFINED = "undefined";
+
+if (typeof Promise == UNDEFINED) {
+  var fixed = false;
+  // check if ES6Promise was loaded
+  if (typeof ES6Promise != UNDEFINED && ES6Promise.polyfill) {
+    try {
+      ES6Promise.polyfill();
+      fixed = typeof Promise != UNDEFINED;
+    } catch (ex) {
+      // ignore
+    }
+  }
+  if (!fixed) {
+    raise(1, "Missing implementation of Promise (missing dependency)")
+  }
 }
 
 class KingTable extends EventsEmitter {
@@ -352,7 +366,7 @@ class KingTable extends EventsEmitter {
         o = self.options,
         builders = KingTable.builders;
     if (self.builder) {
-      self.builder.dispose();
+      self.disposeOf(self.builder);
     }
     var builderType = builders[name];
     if (!builderType) {
@@ -360,6 +374,7 @@ class KingTable extends EventsEmitter {
     }
     var builder = new builderType(self);
     self.builder = builder;
+    self.disposables.push(builder);
     return self;
   }
 
@@ -384,16 +399,9 @@ class KingTable extends EventsEmitter {
       page = options.page,
       resultsPerPage = options.resultsPerPage,
       totalItemsCount = options.totalItemsCount || (data ? data.length : 0);
-    if (this.pagination) {
-      this.pagination.dispose();
+    if (self.pagination) {
+      self.disposeOf(self.pagination);
     }
-    //
-    // TODO: rename in "page" property
-    // because...           table.page.next()
-    // looks better than... table.pagination.next()
-    // TODO:
-    // table.page.number also looks better than table.page.page
-    //
     var pagination = self.pagination = new Paginator({
       page: page,
       resultsPerPage: resultsPerPage,
@@ -421,8 +429,7 @@ class KingTable extends EventsEmitter {
     var pagination = self.pagination;
     pagination.setTotalItemsCount(totalItemsCount);
     // results count change
-    if (self.onResultsCountChange)
-      self.onResultsCountChange();
+    _.ifcall(self.onResultsCountChange, self);
     self.trigger("change:pagination");
     return self;
   }
@@ -632,7 +639,7 @@ class KingTable extends EventsEmitter {
    * Returns the storage used to store data.
    */
   getDataStore() {
-    return localStorage;
+    return sessionStorage;
   }
 
   /**
@@ -1920,6 +1927,15 @@ class KingTable extends EventsEmitter {
   }
 
   /**
+   * 
+   * @param {*} obj 
+   */
+  disposeOf(obj) {
+    obj.dispose();
+    _.removeItem(this.disposables, obj);
+  }
+
+  /**
    * Disposes this KingTable.
    */
   dispose() {
@@ -1933,6 +1949,8 @@ class KingTable extends EventsEmitter {
         x();
     });
     this.disposables = [];
+    var o = this.options;
+    _.ifcall(o.onDispose, this);
   }
 }
 
@@ -1999,7 +2017,7 @@ KingTable.Schemas = {
 // this is intentional, so the users of the library that don't work with ES6, yet,
 // can override its functions using: KingTable.prototype.propertyName = function something() {}
 // Haters are gonna hate. But if you don't like, you can always create a custom build without following three lines! (MIT License)
-if (typeof window !== "undefined") {
+if (typeof window !== UNDEFINED) {
   window.KingTable = KingTable
 }
 

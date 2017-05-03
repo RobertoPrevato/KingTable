@@ -15,6 +15,7 @@ import { VHtmlElement, VTextElement, VCommentElement, VWrapperElement, VHtmlFrag
 import KingTableBaseHtmlBuilder from "../../scripts/tables/kingtable.html.base.builder"
 import raise from "../../scripts/raise"
 import _ from "../../scripts/utils"
+import $ from "../../scripts/dom"
 const SPACE = " "
 
 export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {

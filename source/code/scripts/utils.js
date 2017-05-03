@@ -454,6 +454,17 @@ export default {
     return b;
   },
 
+  removeItem(a, o) {
+    var x = -1;
+    for (var i = 0, l = a[LEN]; i < l; i++) {
+      if (a[i] === o) {
+        x = i;
+        break;
+      }
+    }
+    a.splice(x, 1);
+  },
+
   reject(a, fn) {
     if (!a || !a[LEN]) return [];
     var b = [];
@@ -702,5 +713,20 @@ export default {
    */
   bind(fn, o) {
     return fn.bind(o);
+  },
+
+  ifcall(fn, ctx, args) {
+    if (!fn) return;
+    if (!args) {
+      fn.call(ctx);
+      return;
+    }
+    switch (args.length) {
+      case 0: fn.call(ctx); return;
+      case 1: fn.call(ctx, args[0]); return;
+      case 2: fn.call(ctx, args[0], args[1]); return;
+      case 3: fn.call(ctx, args[0], args[1], args[2]); return;
+      default: fn.apply(ctx, args);
+    }
   }
 };
