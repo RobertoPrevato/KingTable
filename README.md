@@ -2,6 +2,8 @@
 Library for administrative tables that are able to build themselves, on the basis of their input data.
 Supports client and server side pagination; client and server side search; custom filters views; automatic menu to hide columns and support for custom tools. Client side export feature into: csv, json and xml formats.
 
+[![Live demo](https://robertoprevato.github.io/demos/kingtable/images/kingtable.gif)](https://robertoprevato.github.io/demos/kingtable/colors.html)
+
 ## Objectives of the library
 * Allow the implementation of administrative tables with the [smallest amount of code possible](https://github.com/RobertoPrevato/KingTable/wiki/Minimum-effort).
 * Allow for easy customization of generated HTML, to adapt to different needs: e.g. displaying pictures thumbnails, anchor tags, etc.
