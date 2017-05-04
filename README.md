@@ -2,7 +2,7 @@
 Library for administrative tables that are able to build themselves, on the basis of their input data.
 Supports client and server side pagination; client and server side search; custom filters views; automatic menu to hide columns and support for custom tools. Client side export feature into: csv, json and xml formats.
 
-[![Live demo](https://robertoprevato.github.io/demos/kingtable/images/kingtable.gif)](https://robertoprevato.github.io/demos/kingtable/colors.html)
+[![Live demo](https://robertoprevato.github.io/demos/kingtable/images/demo.gif)](https://robertoprevato.github.io/demos/kingtable/colors.html)
 
 ## Objectives of the library
 * Allow the implementation of administrative tables with the [smallest amount of code possible](https://github.com/RobertoPrevato/KingTable/wiki/Minimum-effort).
@@ -23,6 +23,9 @@ The following demos are available online:
 Note how filters are automatically persisted upon page refresh. For example, using the search feature or changing page in one of the rich HTML demos, and then hitting F5. When searching, note how client side search algorithm also sorts results by relevance (number of occurrences, order of properties that generate a match).
 
 **NB:** all these demos are [*fixed tables*](https://github.com/RobertoPrevato/KingTable/wiki/Working-modes#fixed-mode): tables that have all information loaded in memory, paginated and filtered on the client side. To see examples of tables paginated using AJAX requests (on the server side), see the [dedicated documentation](https://github.com/RobertoPrevato/KingTable/wiki/How-to-integrate-in-your-project#how-to-integrate-with-server-side-code) and [development server](https://github.com/RobertoPrevato/KingTable/tree/master/servers/flask) provided in the repository.
+
+## Themes
+[![Live demo - themes](https://robertoprevato.github.io/demos/kingtable/images/themes.gif)](https://robertoprevato.github.io/demos/kingtable/colors.html)
 
 ## Previous version
 The previous version of the KingTable library is available at: [https://github.com/RobertoPrevato/jQuery-KingTable](https://github.com/RobertoPrevato/jQuery-KingTable).
