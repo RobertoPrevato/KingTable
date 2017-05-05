@@ -212,7 +212,7 @@ export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {
         }
         var formattedProp = x + formattedSuffix;
 
-        var valueEl, value = item[formattedProp] || item[x];
+        var valueEl, value = _.has(item, formattedProp) ? item[formattedProp] : item[x];
 
         // does the column define an html resolver?
         if (col.html) {
@@ -223,12 +223,16 @@ export default class KingTableHtmlBuilder extends KingTableBaseHtmlBuilder {
           var html = col.html.call(builder, item, value);
           valueEl = new VHtmlFragment(html || "");
         } else {
-          // is a search active?
-          if (searchPattern && autoHighlight && _.isString(value)) {
-            // an html fragment is required to display an highlighted value
-            valueEl = new VHtmlFragment(builder.highlight(value, searchPattern));
+          if (value === null || value === undefined || value === "") {
+            valueEl = new VTextElement("");
           } else {
-            valueEl = new VTextElement(value);
+            // is a search active?
+            if (searchPattern && autoHighlight && _.isString(value)) {
+              // an html fragment is required to display an highlighted value
+              valueEl = new VHtmlFragment(builder.highlight(value, searchPattern));
+            } else {
+              valueEl = new VTextElement(value);
+            }
           }
         }
 

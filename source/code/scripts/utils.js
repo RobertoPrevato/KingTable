@@ -75,7 +75,7 @@ function isRegExp(o) {
   return o instanceof RegExp;
 }
 function isPlainObject(o) {
-  return typeof o == OBJECT && o.constructor == Object;
+  return typeof o == OBJECT && o !== null && o.constructor == Object;
 }
 function isEmpty(o) {
   if (!o) return true;
@@ -168,6 +168,8 @@ function isUnd(x) {
  */
 function clone(o) {
   var x, a;
+  if (o === null) return null;
+  if (o === undefined) return undefined;
   if (isObject(o)) {
     if (isArray(o)) {
       a = [];
@@ -179,6 +181,10 @@ function clone(o) {
       var v;
       for (x in o) {
         v = o[x];
+        if (v === null || v === undefined) {
+          a[x] = v;
+          continue;
+        }
         if (isObject(v)) {
           if (isDate(v)) {
             a[x] = new Date(v.getTime());

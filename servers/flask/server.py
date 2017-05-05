@@ -77,6 +77,10 @@ def rhtml_colors_page():
 def rhtml_colors_page_fixed():
     return render_template("rhtml-colors-fixed.html")
 
+@app.route("/rhtml-null-values")
+def rhtml_null_values():
+    return render_template("rhtml-null-values.html")
+
 @app.route("/rhtml-schemas")
 def rhtml_schemas():
     return render_template("rhtml-schemas.html")

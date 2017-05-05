@@ -91,6 +91,10 @@ module.exports = {
       dest: JS_DEST
     },
     {
+      src: "libs/*.js",
+      dest: JS_DEST
+    },
+    {
       src: "code/styles/openicon/fonts/*",
       dest: FONTS_DEST
     },

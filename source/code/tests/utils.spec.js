@@ -549,6 +549,57 @@ describe("Base utilities", () => {
     expect(x.e.b[3].a === a.e.b[3].a).toEqual(true, "cloned Array subproperty object item subproperty must be a clone of the original");
   });
 
+  it("must allow to clone items", () => {
+    var a = {
+      b: /test/g,
+      c: "ASD",
+      d: false
+    };
+
+    var b = _.clone(a);
+    expect(b.d).toEqual(a.d);
+
+    a.d = true;
+    expect(b.d).toEqual(false);
+  })
+
+  it("must allow to clone items with null values", () => {
+    var a = {
+      message: null,
+      greetings: "Ciao",
+      something: undefined
+    };
+
+    var b = _.clone(a);
+    expect(b.message).toEqual(a.message);
+    expect(b.greetings).toEqual(a.greetings);
+    expect(b.something).toEqual(a.something);
+  })
+
+  it("must allow to clone items with arrays, deeply", () => {
+    var a = {
+      b: [1, 2, 3, 4]
+    };
+
+    var b = _.clone(a);
+    expect(b.b).toEqual(a.b);
+
+    a.b.push(5);
+    expect(b.b).toEqual([1, 2, 3, 4]);
+  })
+
+  it("must allow to clone items with arrays with objects, deeply", () => {
+    var a = {
+      b: [{ message: "Hello"}]
+    };
+
+    var b = _.clone(a);
+    expect(b.b).toEqual(a.b);
+
+    a.b[0].message = "World";
+    expect(b.b[0].message).toEqual("Hello");
+  })
+
   it("must allow to define partial functions", () => {
     var sentinel = {};
     function a(b, c) {
@@ -755,5 +806,18 @@ describe("Base utilities", () => {
     });
 
     expect(b).toEqual(["fooFOO", "ofoOFO"])
+  })
+
+  it("must distinguish plain objects", () => {
+    expect(_.isPlainObject({})).toEqual(true);
+    expect(_.isPlainObject({ a: "Hello" })).toEqual(true);
+    expect(_.isPlainObject([])).toEqual(false);
+    expect(_.isPlainObject("")).toEqual(false);
+    expect(_.isPlainObject(1)).toEqual(false);
+    expect(_.isPlainObject(/asd/)).toEqual(false);
+    expect(_.isPlainObject(true)).toEqual(false);
+    expect(_.isPlainObject(null)).toEqual(false);
+    expect(_.isPlainObject(undefined)).toEqual(false);
+    expect(_.isPlainObject(function() {})).toEqual(false);
   })
 });

@@ -1,0 +1,23 @@
+{%- extends "layout.html" -%}
+{%- block title -%}
+  KingTable colors demo
+{%- endblock -%}
+{%- block body -%}
+{% include "partials/themes.html" %}
+<div id="main"></div>
+{%- endblock -%}
+{%- block js -%}
+<script src="scripts/null-values.js"></script>
+<script>
+(function () {
+
+  var table = window.table = new KingTable({
+    data: DATA,
+    caption: "KingTable - items with null values",
+    element: document.getElementById("main")
+  });
+
+  table.render();
+})();
+</script>
+{%- endblock -%}

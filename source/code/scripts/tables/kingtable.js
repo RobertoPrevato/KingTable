@@ -146,7 +146,10 @@ const DEFAULTS = {
   idProperty: null,
 
   // Whether searched values should be automatically highlighted
-  autoHighlightSearchProperties: true
+  autoHighlightSearchProperties: true,
+
+  // Value to use for represent null or empty values.
+  emptyValue: ""
 }
 
 const BUILDERS = {
@@ -823,15 +826,16 @@ class KingTable extends EventsEmitter {
    */
   formatValues(data) {
     // first use the function that is designed to be overridable by programmers
-    var self = this;
+    var self = this, o = self.options;
     if (!data) data = self.data;
     // apply formatting by column
-    var formattedSuffix = self.options.formattedSuffix, n;
+    var formattedSuffix = self.options.formattedSuffix, n, v;
     var formattedProperties = _.where(self.columns, x => { return _.isFunction(x.format); });
     _.each(data, x => {
       _.each(formattedProperties, c => {
         n = c.name + formattedSuffix;
-        x[n] = c.format(x[c.name], x) || "";
+        v = x[c.name];
+        x[n] = (_.isUnd(v) || v === null || v === "") ? o.emptyValue : c.format(v, x) || o.emptyValue;
       });
     });
     return self;
