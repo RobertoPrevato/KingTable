@@ -11,6 +11,7 @@
  * http://www.opensource.org/licenses/MIT
  */
 import _ from "../../scripts/utils"
+import S from "../../scripts/components/string"
 import { escapeHtml } from "../../scripts/data/html"
 import KingTableBuilder from "../../scripts/tables/kingtable.builder"
 
@@ -50,15 +51,27 @@ export default class KingTableBaseHtmlBuilder extends KingTableBuilder {
       if (!pattern) return text;
     }
 
+    var diacritics = S.findDiacritics(text);
+    var hasDiacritics = diacritics.length, textWithoutDiacritics;
+
+    if (hasDiacritics) {
+      // remove diacritics before finding matches
+      textWithoutDiacritics = S.normalize(text);
+    } else {
+      textWithoutDiacritics = text;
+    }
     // find all matches at their index, this is required to properly escape html characters
     var matches = [];
-    text.replace(pattern, function (value) {
+    textWithoutDiacritics.replace(pattern, function (value) {
       var index = arguments[arguments.length-2];
+      // NB: if the string contained diacritics, we need to restore
+      // only those that appeared in the same place of the original string
       matches.push({
         i: index,
-        val: value
+        val: hasDiacritics ? S.restoreDiacritics(value, diacritics, index) : value // put back diacritics where they were
       });
     });
+
     var s = "", j = 0, m, val;
     for (var i = 0, l = matches.length; i < l; i++) {
       m = matches[i];
@@ -69,7 +82,7 @@ export default class KingTableBaseHtmlBuilder extends KingTableBuilder {
       s += "<span class=\"kt-search-highlight\">" + escapeHtml(val) + "</span>";
     }
     if (j < text.length) {
-      s += text.substr(j);
+      s += escapeHtml(text.substr(j));
     }
     return s;
   }

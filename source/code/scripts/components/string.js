@@ -30,6 +30,42 @@ export default {
 
   normalize,
 
+  replaceAt(s, index, replacement) {
+    if (!s) return s;
+    return s.substr(0, index) + replacement + s.substr(index + replacement.length);
+  },
+
+  findDiacritics(s) {
+    if (!s) return s;
+    var rx = /[^\u0000-\u007E]/gm;
+    var a = [], m;
+    while (m = rx.exec(s)) {
+      a.push({
+        i: m.index,
+        v: m[0]
+      });
+    }
+    return a;
+  },
+
+  /**
+   * Restore diacritics in normalized strings.
+   */
+  restoreDiacritics(s, diacritics, offset) {
+    if (!s) return s;
+    var l = diacritics.length;
+    if (!l) return s;
+    if (offset === undefined) offset = 0;
+    var endIndex = offset + s.length - 1; // NB: we only restore diacritics that appears in the string portion
+    var d;
+    for (var i = 0; i < l; i++) {
+      d = diacritics[i];
+      if (d.i > endIndex) break;
+      s = this.replaceAt(s, d.i - offset, d.v);
+    }
+    return s;
+  },
+
   /**
    * Returns a new string in snake_case, from the given string.
    */

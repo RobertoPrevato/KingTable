@@ -87,4 +87,39 @@ describe("KingTableHtmlBuilder", () => {
     expect(html).toEqual("Hello World");
   });
 
+  it("must escape html fragments", () => {
+    var a = new KingTableHtmlBuilder();
+    var text = "<script>alert('Foo')</script>";
+    var pattern = /scri/gim;
+
+    var html = a.highlight(text, pattern);
+    expect(html).toEqual(`&lt;<span class="kt-search-highlight">scri</span>pt&gt;alert(&#039;Foo&#039;)&lt;/<span class="kt-search-highlight">scri</span>pt&gt;`);
+  });
+
+  it("must support diacritics in highlights", () => {
+    var a = new KingTableHtmlBuilder();
+    var text = "Błażkiewicz";
+    var pattern = /laz/gim;
+
+    var html = a.highlight(text, pattern);
+    expect(html).toEqual(`B<span class="kt-search-highlight">łaż</span>kiewicz`);
+  });
+
+  it("must support diacritics, two outside highlight", () => {
+    var a = new KingTableHtmlBuilder();
+    var text = "Barłysław";
+    var pattern = /bar/gim;
+
+    var html = a.highlight(text, pattern);
+    expect(html).toEqual(`<span class="kt-search-highlight">Bar</span>łysław`);
+  })
+
+  it("must support diacritics, many outside highlight", () => {
+    var a = new KingTableHtmlBuilder();
+    var text = "Barłysławłłł";
+    var pattern = /bar/gim;
+
+    var html = a.highlight(text, pattern);
+    expect(html).toEqual(`<span class="kt-search-highlight">Bar</span>łysławłłł`);
+  })
 });
