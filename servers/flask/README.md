@@ -1,9 +1,9 @@
 # Python Flask development server
-A development server is required for the development of the KingTable library, since some features require server side pagination, sorting and filtering (since filtering and sorting affect pagination). Python Flask has been chosen because it's a lightweight web framework that allows for fast development (and to take a break from JavaScript!).
+A development server is required for the development of the KingTable library, since some features require server side pagination, sorting and filtering (since filtering and sorting affect pagination). Python Flask has been chosen because it's a lightweight web framework that enables fast development (and to take a break from JavaScript!).
 Following are instructions on how to run a Flask development server.
 
-In order to run the provided development server it is necessary to use Python and Flask (either Python 2.x or 3.x).
-If necessary, the recommended way is to install a version of Python, which by default include its **pip** (package management system for Python), then use pip to install Flask.
+In order to run the provided Flask development server it is necessary to use Python and Flask (either Python 2.x or 3.x).
+It is recommended to create a virtual environment and use **pip** (package management system for Python) to install Flask.
 Steps:
 
 * If necessary, install Python from the [official website](https://www.python.org/downloads/)
