@@ -7,6 +7,24 @@ locale.setlocale(locale.LC_ALL, "")
 class ListUtils:
 
     @staticmethod
+    def parse_sort_by(s):
+        """
+        Parses a sort by string, converting it into an array of arrays.
+        
+        :param s: sort by string
+        """
+        if not s:
+            return
+        parts = re.split("\s*,\s*", s)
+        result = []
+        for part in parts:
+            a = re.split("\s*", part)
+            name = a[0]
+            order = a[1] if len(a) == 2 else "asc"
+            result.append([name, 1 if order.startswith("asc") else -1])
+        return result
+
+    @staticmethod
     def sort_by(a, criteria):
         """
         Sorts an array of items by one or more properties.
@@ -15,6 +33,8 @@ class ListUtils:
         :param criteria: sort criteria
         :return:
         """
+        if isinstance(criteria, str):
+            criteria = ListUtils.parse_sort_by(criteria)
         # assume that properties are in order of importance, sorting must be from less important
         # to most important property:
         criteria.reverse()

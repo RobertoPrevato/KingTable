@@ -846,11 +846,18 @@ describe("Array utilities", () => {
     var a = A.parseSortBy("name desc, age desc");
     expect(a).toEqual([["name", -1], ["age", -1]]);
   })
-});
 
-/*
-_.each(b, (x, i) => {
-  console.log(`expect(b[${i}].name).toEqual("${x.name}");`);
-  console.log(`expect(b[${i}].age).toEqual(${x.age});`);
-})
-*/
+  it("must convert sort by criteria in human readable strings", () => {
+    var a = A.humanSortBy([["name", 1]]);
+    expect(a).toEqual("name");
+
+    var a = A.humanSortBy([["name", -1]]);
+    expect(a).toEqual("name desc");
+
+    var a = A.humanSortBy([["name", 1], ["age", -1]]);
+    expect(a).toEqual("name, age desc");
+
+    var a = A.humanSortBy([["name", -1], ["age", -1]]);
+    expect(a).toEqual("name desc, age desc");
+  })
+});

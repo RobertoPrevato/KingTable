@@ -1,6 +1,7 @@
 import unittest
 import unidecode
 import random
+from core.lists.listutils import ListUtils
 
 PEOPLE = [
   { "name": "Adam", "age": 60 },
@@ -83,93 +84,18 @@ class ArrayUtilsTestCase(unittest.TestCase):
     """
       Tests for Array utilities.
     """
+    def test_parse_sort_by(self):
+        a = ListUtils.parse_sort_by("name")
+        self.assertEqual(a, [["name", 1]])
 
-    def test_sort_by_fn(self):
+        a = ListUtils.parse_sort_by("name desc")
+        self.assertEqual(a, [["name", -1]])
 
-        def sort_by(a, *args):
-            def fn(o):
-                props = []
-                for name in args:
-                    v = o.get(name)
-                    if isinstance(v, str):
-                        # normalize
-                        v = unidecode.unidecode(v)
+        a = ListUtils.parse_sort_by("name, age desc")
+        self.assertEqual(a, [["name", 1], ["age", -1]])
 
-                        # revert ?
-                        v = [[-ord(c) for c in v]]
-                    props.append(v)
-                return tuple(props)
-
-            a.sort(key=fn)
-        random.shuffle(PEOPLE)
-        sort_by(PEOPLE, "name", "age")
-
-        self.assertEqual("Adam", PEOPLE[0].get("name"))
-        self.assertEqual(40, PEOPLE[0].get("age"))
-        self.assertEqual("Adam", PEOPLE[1].get("name"))
-        self.assertEqual(60, PEOPLE[1].get("age"))
-        self.assertEqual("Bogumił", PEOPLE[2].get("name"))
-        self.assertEqual(29, PEOPLE[2].get("age"))
-        self.assertEqual("Luca", PEOPLE[3].get("name"))
-        self.assertEqual(20, PEOPLE[3].get("age"))
-        self.assertEqual("Luca", PEOPLE[4].get("name"))
-        self.assertEqual(35, PEOPLE[4].get("age"))
-        self.assertEqual("Lucetta", PEOPLE[5].get("name"))
-        self.assertEqual(21, PEOPLE[5].get("age"))
-        self.assertEqual("Lucia", PEOPLE[6].get("name"))
-        self.assertEqual(30, PEOPLE[6].get("age"))
-        self.assertEqual("Lucia", PEOPLE[7].get("name"))
-        self.assertEqual(48, PEOPLE[7].get("age"))
-        self.assertEqual("Lucio", PEOPLE[8].get("name"))
-        self.assertEqual(40, PEOPLE[8].get("age"))
-        self.assertEqual("Łukasz", PEOPLE[9].get("name"))
-        self.assertEqual(40, PEOPLE[9].get("age"))
-        self.assertEqual("Monica", PEOPLE[10].get("name"))
-        self.assertEqual(10, PEOPLE[10].get("age"))
-        self.assertEqual("Monica", PEOPLE[11].get("name"))
-        self.assertEqual(14, PEOPLE[11].get("age"))
-        self.assertEqual("Roberto", PEOPLE[12].get("name"))
-        self.assertEqual(20, PEOPLE[12].get("age"))
-        self.assertEqual("Roberto", PEOPLE[13].get("name"))
-        self.assertEqual(31, PEOPLE[13].get("age"))
-        self.assertEqual("Stanisław", PEOPLE[14].get("name"))
-        self.assertEqual(30, PEOPLE[14].get("age"))
-
-    def test_sort_by(self):
-        random.shuffle(PEOPLE)
-        PEOPLE.sort(key = lambda x: (unidecode.unidecode(x.get("name")),
-                                     x.get("age")))
-
-        self.assertEqual("Adam", PEOPLE[0].get("name"))
-        self.assertEqual(40, PEOPLE[0].get("age"))
-        self.assertEqual("Adam", PEOPLE[1].get("name"))
-        self.assertEqual(60, PEOPLE[1].get("age"))
-        self.assertEqual("Bogumił", PEOPLE[2].get("name"))
-        self.assertEqual(29, PEOPLE[2].get("age"))
-        self.assertEqual("Luca", PEOPLE[3].get("name"))
-        self.assertEqual(20, PEOPLE[3].get("age"))
-        self.assertEqual("Luca", PEOPLE[4].get("name"))
-        self.assertEqual(35, PEOPLE[4].get("age"))
-        self.assertEqual("Lucetta", PEOPLE[5].get("name"))
-        self.assertEqual(21, PEOPLE[5].get("age"))
-        self.assertEqual("Lucia", PEOPLE[6].get("name"))
-        self.assertEqual(30, PEOPLE[6].get("age"))
-        self.assertEqual("Lucia", PEOPLE[7].get("name"))
-        self.assertEqual(48, PEOPLE[7].get("age"))
-        self.assertEqual("Lucio", PEOPLE[8].get("name"))
-        self.assertEqual(40, PEOPLE[8].get("age"))
-        self.assertEqual("Łukasz", PEOPLE[9].get("name"))
-        self.assertEqual(40, PEOPLE[9].get("age"))
-        self.assertEqual("Monica", PEOPLE[10].get("name"))
-        self.assertEqual(10, PEOPLE[10].get("age"))
-        self.assertEqual("Monica", PEOPLE[11].get("name"))
-        self.assertEqual(14, PEOPLE[11].get("age"))
-        self.assertEqual("Roberto", PEOPLE[12].get("name"))
-        self.assertEqual(20, PEOPLE[12].get("age"))
-        self.assertEqual("Roberto", PEOPLE[13].get("name"))
-        self.assertEqual(31, PEOPLE[13].get("age"))
-        self.assertEqual("Stanisław", PEOPLE[14].get("name"))
-        self.assertEqual(30, PEOPLE[14].get("age"))
+        a = ListUtils.parse_sort_by("name desc, age desc")
+        self.assertEqual(a, [["name", -1], ["age", -1]])
 
     def test_sort_by_criteria(self):
         random.shuffle(PEOPLE)

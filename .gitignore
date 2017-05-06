@@ -42,3 +42,6 @@ httpdocs/*
 .vscode/*
 demos/*
 /source/copy_to_demo.sh
+
+/servers/flask/.vscode*
+/servers/flask/.idea*

@@ -10,7 +10,7 @@
 """
 import os
 import json
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, make_response
 from bll.collectionmanager import CollectionManager
 
 # set the project root directory as the static folder, you can set others.
@@ -19,7 +19,8 @@ rel = os.path.join(root_dir, "..", "httpdocs")
 pat = os.path.abspath(rel)
 app = Flask(__name__, static_folder=pat)
 
-# set debug to true
+# set debug to true (this is useful while developing client side code because it gives hot refresh of server)
+# however, set it to false when you desire to debug Python code in PyCharm!
 app.debug = True
 PORT = 44555
 
@@ -31,6 +32,39 @@ ProductsManager = CollectionManager("products.json")
 plain_text = {"Content-Type": "text/plain"}
 json_type = {"Content-Type": "application/json"}
 bad_request = ("Bad Request", 400, plain_text)
+
+
+class MissingFilters(Exception):
+    pass
+
+
+def normalize_query_string_args(data):
+    if "sortBy" in data:
+        # sortBy must be converted to an array; or a string
+        pass
+
+    return data
+
+
+def get_filters_data(req):
+    data = req.get_json()
+    if data is None:
+        # maybe the client is sending data through query string?
+        qs = req.args
+        if qs:
+            # client is using query string
+            data = normalize_query_string_args(qs.to_dict())
+        else:
+            raise MissingFilters
+    return data
+
+
+def get_json_response(data):
+    res = make_response(json.dumps(data, indent=4))
+    res.mimetype = "application/json"
+    max_age = 60*15
+    res.headers.add("Cache-Control", "max-age=%s" % max_age)
+    return res
 
 
 @app.route("/")
@@ -108,22 +142,24 @@ def rhtml_scores_page_fixed():
 @app.route("/api/colors", methods=["OPTIONS", "GET", "POST"])
 def colors():
     # get the input data from the client:
-    data = request.get_json()
-    if data is None:
+    try:
+        data = get_filters_data(request)
+    except MissingFilters:
         return "Missing filters data.", 400, {"Content-Type": "text/plain"}
 
     result = ColorsManager.get_catalog(data)
-    return json.dumps(result, indent=4)
+    return get_json_response(result)
 
 @app.route("/api/people", methods=["OPTIONS", "GET", "POST"])
 def people():
     # get the input data from the client:
-    data = request.get_json()
-    if data is None:
+    try:
+        data = get_filters_data(request)
+    except MissingFilters:
         return "Missing filters data.", 400, {"Content-Type": "text/plain"}
 
     result = PeopleManager.get_catalog(data)
-    return json.dumps(result, indent=4)
+    return get_json_response(result)
 
 @app.route("/<path:path>")
 def static_proxy(path):

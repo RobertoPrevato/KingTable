@@ -27,8 +27,8 @@ class CollectionManager:
             raise TypeError
 
         # timestamp = data["timestamp"] # timestamp of the first time a page was required
-        page_number = data.get("page")
-        page_size = data.get("size")
+        page_number = int(data.get("page"))
+        page_size = int(data.get("size"))
         search = data.get("search")
         sort_by = data.get("sortBy")
         # get the collection

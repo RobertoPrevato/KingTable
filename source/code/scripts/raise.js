@@ -66,4 +66,5 @@ Errors
 38. Cannot obtain HTML from parameter.
 39. KingTable is not defined in global namespace.
 40. Tools is not an array or a function returning an array.
+41. Invalid HTTP Method configuration.
 */

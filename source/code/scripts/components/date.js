@@ -330,5 +330,13 @@ export default {
   hasTime(a) {
     var hours = a.getHours(), minutes = a.getMinutes(), seconds = a.getSeconds();
     return !!(hours || minutes || seconds);
+  },
+
+  /**
+   * Returns a standardized ISO 8601 formatted string.
+   * 2011-06-29T16:52:48.000Z
+   */
+  toIso8601(a) {
+    return this.format(a, "YYYY-MM-DD") + "T" + this.format(a, "hh:mm:ss") + "." + this.format(a, "fff") + "Z";
   }
 }

@@ -178,6 +178,11 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
       "change:pagination": () => {
         if (!this.rootElement) return true;
         self.updatePagination();
+      },
+      "get-list:failed": () => {
+        // pagination must be updated also in this case
+        if (!this.rootElement) return true;
+        self.updatePagination();
       }
     });
   }
@@ -900,7 +905,6 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
         items: items
       }
     };
-    return null;
   }
 
   /**

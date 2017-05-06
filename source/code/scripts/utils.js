@@ -278,6 +278,10 @@ export default {
 
   has: hasOwnProperty,
 
+  isNullOrEmptyString(v) {
+    return v === null || v === undefined || v === "";
+  },
+
   lower,
 
   upper,

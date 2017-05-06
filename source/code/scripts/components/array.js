@@ -106,6 +106,17 @@ export default {
     });
   },
 
+  humanSortBy(a, verbose) {
+    if (!a || !a.length) return "";
+    return _.map(a, part => {
+      var name = part[0], order = part[1];
+      if (order === 1) {
+        return verbose ? (name + " asc") : name;
+      }
+      return name + " desc";
+    }).join(", ");
+  },
+
   /**
    * Gets sort criteria from given arguments.
    */

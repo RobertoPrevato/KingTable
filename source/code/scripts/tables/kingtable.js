@@ -42,7 +42,6 @@ import {
 const VERSION = "2.0.0"
 
 const DEFAULTS = {
-
   
   // Table language.
   lang: "en",
@@ -64,6 +63,8 @@ const DEFAULTS = {
     // format: undefined (allows to define formatting function) 
   },
 
+  httpMethod: "GET", // method to use to fetch data, when using AJAX requests
+
   // Whether to allow search, or not.
   allowSearch: true,
 
@@ -84,7 +85,10 @@ const DEFAULTS = {
   fixed: undefined,
 
   // Permits to specify an initial search when generating the table for the first time
-  search: '',
+  search: "",
+
+  // Permits to specify how sort by information must be transmitted
+  sortByFormatter: A.humanSortBy,
 
   // Permits to specify the search mode to use during live search
   // FullString, SplitWords or SplitSentences
@@ -221,16 +225,18 @@ class KingTable extends EventsEmitter {
    */
   baseProperties() {
     return [
-      "id",               // allows to set an id to the kingtable
-      "onInit",           // function to execute after initialization
-      "element",          // allows to specify the table element
-      "context",          // table context
-      "fixed",            //
-      "prepareData",      //
-      "getExtraFilters",  //
-      "getTableData",     // function to get required data to render the table
-      "afterRender",      // function to execute after render
-      "beforeRender"     // function to execute before render
+      "id",                    // allows to set an id to the kingtable
+      "onInit",                // function to execute after initialization
+      "element",               // allows to specify the table element
+      "context",               // table context
+      "fixed",                 //
+      "prepareData",           //
+      "getExtraFilters",       //
+      "getTableData",          // function to get required data to render the table
+      "afterRender",           // function to execute after render
+      "beforeRender",          // function to execute before render
+      "numberFilterFormatter", // function to format numbers for filters
+      "dateFilterFormatter"    // function to format dates for filters
     ];
   }
 
@@ -1531,20 +1537,61 @@ class KingTable extends EventsEmitter {
     // The default implementation implements getFetchPromise by generating an AJAX call,
     // since this is the most common use case scenario.
     // However, this class is designed to be almost abstracted from AJAX, so overriding this single
-    // function allows to fetch data from other sources (e.g. reading files in chunks from file system; returning mock data for unit tests;).
-    var url = this.options.url;
+    // function allows to fetch data from other sources (e.g. reading files in chunks from file system; returning mock data for unit tests; etc).
+    var options = this.options;
+    var url = options.url;
     if (!url) raise(5, "Missing url option, to fetch data");
+
+    // NB: if method is GET, ajax helper will automatically convert it to a query string
+    // with keys in alphabetical order; conversion is done transparently
+    var method = options.httpMethod;
+
+    // format fetch data
+    params = this.formatFetchData(params);
+
     return ajax.shot({
+      type: method,
       url: url,
       data: params
     });
+  }
+
+  numberFilterFormatter(propertyName, value) {
+    return value;
+  }
+
+  dateFilterFormatter(propertyName, value) {
+    return D.toIso8601(value);
+  }
+
+  formatFetchData(data) {
+    var options = this.options;
+    var sortByFormatter = options.sortByFormatter;
+    if (data.sortBy && _.isFunction(sortByFormatter)) {
+      data.sortBy = sortByFormatter(data.sortBy);
+    }
+
+    var x;
+    for (x in data) {
+      var v = data[x];
+      if (v instanceof Date) {
+        data[x] = this.dateFilterFormatter(x, v);
+      }
+      if (v instanceof Number) {
+        data[x] = this.numberFilterFormatter(x, v);
+      }
+    }
+    return data;
   }
 
   /**
    * Returns an object that describe all filters and necessary options to fetch data.
    */
   mixinFetchData() {
-    return _.extend(this.getFiltersSetCache(), this.options.postData || {});
+    var extraData = this.options.fetchData;
+    if (_.isFunction(extraData)) 
+      extraData = extraData.call(this);
+    return _.extend(this.getFiltersSetCache(), extraData || {});
   }
 
   /**
@@ -2016,6 +2063,8 @@ KingTable.Schemas = {
   }
 };
 
+// expose ajax functions
+KingTable.Ajax = ajax;
 
 // Pollute the window namespace with the KingTable object,
 // this is intentional, so the users of the library that don't work with ES6, yet,

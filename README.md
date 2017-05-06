@@ -37,21 +37,22 @@ A full list of possible options is available inside the dedicated [Options page]
 ### Features of the new version
 Following is a table listing the features that were added to KingTable 2.0.
 
-| Feature                             | Description                                                                                                                                                        |
-|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ES6 source code                     | ES6 source code, library is transpiled to ES5 for distribution.                                                                                                    |
-| Unit tested source code             | Source code is integrated with Gulp tasks, Karma, Jasmine for unit tests. Almost 300 tests - still to grow!                                                        |
-| Removed dependencies                | Removed dependency from jQuery, Lodash, I.js, R.js.                                                                                                                |
-| Improved exceptions                 | Raised exceptions include a link to GitHub wiki with detailed instructions.                                                                                        |
-| LRU cache                           | _Least Recently Used_ caching mechanism to cache the last _n_ pages by filters, to reduce number of AJAX requests.                                                 |
-| Table data fetch logic              | Allows to define functions that return data required to render the table itself (e.g. dictionaries for custom filters views)                                       |
-| Caching of filters                  | Filters for each table are cached using client side storage (configurable), so they are persisted upon page refresh.                                               |
-| Improved _CS_ sorting               | Strings that can be sorted like numbers (like "25%", "25.40 EUR", "217°") are automatically parsed as numbers when sorting.                                        |
-| Improved _CS_ sorting               | Client side sorting by multiple properties.                                                                                                                        |
-| Improved _CS_ search                | Client side search feature has been improved: search works in culture dependent string representations of dates and numbers and other formatted strings.           |
-| Improved support for event handlers | Custom event handlers receive automatically the clicked item as parameter, if applicable.                                                                          |
-| Improved support for custom buttons | It's now possible to configure extra fields (such as buttons) to be rendered for each item.                                                                        |
-| Improved support for other medias   | Support for NodeJS console applications and HTML tables rendering for email bodies sent using NodeJS.                                                              |
+| Feature | Description |
+|---------|-------------|
+| ES6 source code | ES6 source code, library is transpiled to ES5 for distribution. |
+| Unit tested source code | Source code is integrated with Gulp tasks, Karma, Jasmine for unit tests. More than 300 tests - still to grow! |
+| Removed dependencies | Removed dependency from jQuery, Lodash, I.js, R.js. |
+| Improved exceptions | Raised exceptions include a link to GitHub wiki with detailed instructions. |
+| Improved logic to fetch data | Allows to choose between HTTP GET method (filters in query string) or HTTP POST method (filters as JSON POST data). |
+| LRU cache | _Least Recently Used_ caching mechanism to cache the last _n_ pages by filters, to reduce number of AJAX requests. |
+| Table data fetch logic | Allows to define functions that return data required to render the table itself (e.g. dictionaries for custom filters views) |
+| Caching of filters | Filters for each table are cached using client side storage (configurable), so they are persisted upon page refresh. |
+| Improved _CS_ sorting | Strings that can be sorted like numbers (like "25%", "25.40 EUR", "217°") are automatically parsed as numbers when sorting. |
+| Improved _CS_ sorting | Client side sorting by multiple properties. |
+| Improved _CS_ search | Client side search feature has been improved: search works in culture dependent string representations of dates and numbers and other formatted strings. |
+| Improved support for event handlers | Custom event handlers receive automatically the clicked item as parameter, if applicable. |
+| Improved support for custom buttons | It's now possible to configure extra fields (such as buttons) to be rendered for each item. |
+| Improved support for other medias | Support for NodeJS console applications and HTML tables rendering for email bodies sent using NodeJS. |
 
 ## Modes
 The KingTable library implements two working modes:

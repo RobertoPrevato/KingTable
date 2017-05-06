@@ -55,7 +55,7 @@ class TestKingTableFixedEmptyNoColumns extends KingTable {
     getFetchPromise() {
       return new Promise((resolve, reject) => {
         // resolve with an empty array of items: in this case the table is 'fixed'
-        // and doesn not know much about its data.
+        // and does not know much about its data.
         setTimeout(() => {
           resolve([])
         }, 0)

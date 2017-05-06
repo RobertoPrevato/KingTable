@@ -264,4 +264,22 @@ describe("Date utilities", () => {
     a = new Date(1986, 4, 30, 10, 30);
     expect(D.hasTime(a)).toEqual(true, "a date with hours and minutes has time information")
   })
+
+  it("must allow to format dates in ISO 8601 format, with detailed dates", () => {
+    var a = new Date(2011, 5, 29, 16, 52, 48, 123);
+    var s = D.toIso8601(a);
+    expect(s).toEqual("2011-06-29T16:52:48.123Z");
+  })
+
+  it("must allow to format dates in ISO 8601 format, without time information", () => {
+    var a = new Date(2011, 5, 29);
+    var s = D.toIso8601(a);
+    expect(s).toEqual("2011-06-29T00:00:00.000Z");
+  })
+
+  it("must allow to format dates in ISO 8601 format, without time but with ms information", () => {
+    var a = new Date(2011, 5, 29, 0, 0, 0, 656);
+    var s = D.toIso8601(a);
+    expect(s).toEqual("2011-06-29T00:00:00.656Z");
+  })
 });
