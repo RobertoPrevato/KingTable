@@ -641,7 +641,7 @@ class KingTable extends EventsEmitter {
    * Returns the storage used to store filters settings.
    */
   getFiltersStore() {
-    return sessionStorage;
+    return localStorage;
   }
 
   /**
@@ -1475,13 +1475,13 @@ class KingTable extends EventsEmitter {
       var key = self.getMemoryKey("catalogs"),
         cachedData = lru_cache.get(key, x => {
           return _.equal(frozen, x.filters);
-        }, true);
+        }, store, true);
       if (cachedData) {
         if (options.clearDataCache) {
           // clear the cache for all pages,
           // this is important to not confuse the user
           // because if only the cache for a specific page number were cleared, it would be difficult to understand
-          lru_cache.remove(key);
+          lru_cache.remove(key, undefined, store);
         } else {
           // set timestamp of when data was fetched
           self[anchorTime] = new Date(cachedData.data[anchorTime]);
@@ -1511,9 +1511,9 @@ class KingTable extends EventsEmitter {
             data: data,
             filters: params,
             anchorTime: self[anchorTime].getTime()
-          }, o.lruCacheSize, o.lruCacheMaxAge);
+          }, o.lruCacheSize, o.lruCacheMaxAge, store);
         }
-        self.dataFetchTime = new Date();//TODO: SET ONLY IF... CHECK TIMESTAMP!!!
+        self.dataFetchTime = new Date();
         self.loading = false;
         self.emit("fetched:data");
         resolve(data);

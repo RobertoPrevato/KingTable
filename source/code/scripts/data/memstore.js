@@ -14,6 +14,16 @@ const CACHE = {};
 
 export default {
 
+  items() {
+    return CACHE;
+  },
+
+  length() {
+    var x, i = 0;
+    for (x in CACHE) { i++; }
+    return i;
+  },
+
   getItem(name) {
     return CACHE[name];
   },
@@ -24,6 +34,12 @@ export default {
 
   removeItem(name) {
     delete CACHE[name];
-  }
+  },
 
+  clear() {
+    var x;
+    for (x in CACHE) {
+      delete CACHE[x];
+    }
+  }
 }

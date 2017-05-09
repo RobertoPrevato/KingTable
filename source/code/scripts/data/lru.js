@@ -15,6 +15,7 @@ import {
 } from "../../scripts/exceptions"
 
 function getStorage(type) {
+  if (_.isObject(type)) return type;
   switch (type) {
     case 1:
       return localStorage;
