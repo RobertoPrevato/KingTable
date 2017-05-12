@@ -269,7 +269,7 @@ export default {
   },
 
   repeat(s, l) {
-    return new Array(l-1).join(s);
+    return new Array(l+1).join(s);
   },
 
   /**

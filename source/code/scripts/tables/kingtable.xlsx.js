@@ -9,18 +9,9 @@
  * http://www.opensource.org/licenses/MIT
  */
 import raise from "../../scripts/raise"
+var und = "undefined";
 
-var root, und = "undefined";
-if (typeof window != und) {
-  root = window;
-} else if (typeof global != und) {
-  root = global;
-} else {
-  throw "";
-}
-
-if (!KingTable) raise(39, "KingTable is not defined in global namespace");
-
+if (typeof KingTable == und) raise(39, "KingTable is not defined in global namespace");
 if (typeof XLSX == und) raise(2, "Missing dependency: js-xlsx");
 if (typeof Blob == und) raise(2, "Missing dependency: Blob");
 
@@ -41,8 +32,12 @@ function sheetFromArrayOfArrays(data, opts) {
       if(cell.v == null) continue;
       var cell_ref = XLSX.utils.encode_cell({c:C,r:R});
       
-      if (typeof value === "number") cell.t = "n";
-      else if (typeof value === "boolean") cell.t = "b";
+      if (typeof value == "number") { 
+        cell.t = "n";
+        // TODO: support desired precision of numbers
+        //cell.z = ...
+      }
+      else if (typeof value == "boolean") cell.t = "b";
       else if (value instanceof Date) {
         cell.t = "n"; cell.z = XLSX.SSF._table[14];
         cell.v = dateValue(cell.v);
@@ -104,7 +99,7 @@ KingTable.defaults.excelCellMinWidth = 0;
 KingTable.defaults.excelAllStrings = false;
 
 // add export format for client side Xlsx
-KingTable.defaults.exportFormats.push({
+KingTable.defaults.exportFormats.unshift({
   name: "Xlsx",
   format: "xlsx",
   type: "application/octet-stream",
