@@ -15,6 +15,8 @@ The following demos are available online:
 * [Index of demos](https://robertoprevato.github.io/demos/kingtable/index.html)
 * [Colors demo (rich HTML)](https://robertoprevato.github.io/demos/kingtable/colors.html)
 * [People demo (rich HTML)](https://robertoprevato.github.io/demos/kingtable/people.html)
+* [Colors demo (rich HTML) with export to Excel (xlsx)](https://robertoprevato.github.io/demos/kingtable/colors-xlsx.html)
+* [People demo (rich HTML) with export to Excel (xlsx)](https://robertoprevato.github.io/demos/kingtable/people-xlsx.html)
 * [People demo (plain HTML, without handlers)](https://robertoprevato.github.io/demos/kingtable/people-html.html)
 * [People demo (plain text)](https://robertoprevato.github.io/demos/kingtable/people-plain.html)
 * [How to display pictures](https://robertoprevato.github.io/demos/kingtable/default-by-type.html)
