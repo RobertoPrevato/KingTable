@@ -88,7 +88,6 @@ export default {
       [REP](/([a-z])[\s\-]?([A-Z])/g, (a, b, c) => { return b + "-" + toLower(c); })
       [REP](/([A-Z]+)/g, (a, b) => { return toLower(b); })
       [REP](/-{2,}/g, "-");
-    return s;
   },
 
   /**
@@ -267,6 +266,10 @@ export default {
       lines[i] = line;
     }
     return wasString ? lines.join("\n") : lines;
+  },
+
+  repeat(s, l) {
+    return new Array(l-1).join(s);
   },
 
   /**

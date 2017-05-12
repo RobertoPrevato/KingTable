@@ -27,7 +27,7 @@ export default function raise(err, detail) {
 Errors
 ----------------------------------------------------
 1. Missing Promise implementation.
-2. Missing i18n implementation.
+2. Missing dependency.
 3. KingTable initialization: Data is not an array.
 4. KingTable: cannot determine id property of displayed objects.
 5. KingTable: an AJAX request is required, but url is not configured.

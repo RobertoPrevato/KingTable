@@ -338,5 +338,15 @@ export default {
    */
   toIso8601(a) {
     return this.format(a, "YYYY-MM-DD") + "T" + this.format(a, "hh:mm:ss") + "." + this.format(a, "fff") + "Z";
+  },
+
+  /**
+   * Returns a value representing a date in Excel-style.
+   * Excel stores dates as sequential serial numbers so that they can be used in calculations. 
+   * By default, January 1, 1900 is serial number 1, and January 1, 2008 is serial number 39448 because it is 39,447 days after January 1, 1900.
+   */
+  toExcelDateValue(v) {
+    var a = 25569.0 + ((v.getTime() - (v.getTimezoneOffset() * 60 * 1000)) / (1000 * 60 * 60 * 24));
+    return a.toString().substr(0,5);
   }
 }

@@ -24,7 +24,7 @@ import _ from "../../scripts/utils"
 import S from "../../scripts/components/string"
 const SPACE = " "
 const RN = "\r\n"
-const LINE_SEP = "*****************************************************************";
+const LINE_SEP = S.repeat("*", 65);
 
 
 export default class KingTableTextBuilder extends KingTableBuilder {

@@ -924,7 +924,7 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
 
     var items = _.map(exportFormats, o => {
       return {
-        name: reg.exportFormats[o.format],
+        name: reg.exportFormats[o.format] || o.name,
         attr: {
           css: "export-btn",
           "data-format": o.format

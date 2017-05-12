@@ -70,6 +70,11 @@ module.exports = {
       entry: "./code/scripts/tables/kingtable.js",
       destfolder: JS_DEST,
       filename: "kingtable"
+    },
+    {
+      entry: "./code/scripts/tables/kingtable.xlsx.js",
+      destfolder: JS_DEST,
+      filename: "kingtable.xlsx"
     }
   ],
 
