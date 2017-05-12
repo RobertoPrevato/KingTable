@@ -12,8 +12,8 @@ The file `kingtable.css` contains all themes. It is recommended to optimize your
 Open Iconic fonts ([GitHub page](https://github.com/iconic/open-iconic)) are a dependency of KingTable styles. The folder `fonts` contains a copy of the font, used for the published demos. CSS rules for the fonts are already included inside kingtable .css files.
 
 ## KingTable plugins
-This folder also contains plugins that are not necessary.
+This folder also contains optional plugins. Refer to [dedicated wiki page for detailed information](https://github.com/RobertoPrevato/KingTable/wiki/Plugins).
 
-| Feature | Description |
+| File | Description |
 |---------|-------------|
 | kingtable.xlsx.js | Plugin to support client side export in Excel (xlsx) files. |
