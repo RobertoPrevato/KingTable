@@ -33,7 +33,13 @@
   </header>
   {%- block body -%}{%- endblock -%}
   <script src="scripts/es6-promise.js"></script>
+
+  <!-- Excel export -->
+  <script src="scripts/xlsx.core.min.js" async="async"></script>
+  <script src="scripts/blob.js" async="async"></script>
+
   <script src="scripts/kingtable.js"></script>
+  <script src="scripts/kingtable.xlsx.js"></script>
   {%- block js -%}{%- endblock -%}
 </body>
 </html>

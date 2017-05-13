@@ -11,9 +11,8 @@
 import raise from "../../scripts/raise"
 var und = "undefined";
 
+// KingTable is immediately necessary
 if (typeof KingTable == und) raise(39, "KingTable is not defined in global namespace");
-if (typeof XLSX == und) raise(2, "Missing dependency: js-xlsx");
-if (typeof Blob == und) raise(2, "Missing dependency: Blob");
 
 var _ = KingTable.Utils;
 var dateValue = KingTable.DateUtils.toExcelDateValue;
@@ -65,6 +64,10 @@ function s2ab(s) {
 }
 
 function handler(itemsToDisplay) {
+  // at this point, dependencies are required
+  if (typeof XLSX == und) raise(2, "Missing dependency: js-xlsx");
+  if (typeof Blob == und) raise(2, "Missing dependency: Blob");
+
   var self = this, o = self.options;
   var data = self.optimizeCollection(itemsToDisplay, null, {
     format: o.excelAllStrings
