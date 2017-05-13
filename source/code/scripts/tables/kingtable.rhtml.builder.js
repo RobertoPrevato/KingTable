@@ -1277,7 +1277,6 @@ class KingTableRichHtmlBuilder extends KingTableHtmlBuilder {
    * Disposes of this KingTableRichHtmlBuilder.
    */
   dispose() {
-    console.info("[*] RHTML DISPOSED!");
     // undelegate events
     this.undelegateEvents().unbindWindowEvents();
     // remove element
