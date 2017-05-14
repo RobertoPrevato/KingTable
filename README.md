@@ -1,6 +1,6 @@
 # KingTable
 Library for administrative tables that are able to build themselves, on the basis of their input data.
-Supports client and server side pagination; client and server side search; custom filters views; automatic menu to hide columns and support for custom tools. Client side export feature into: csv, json and xml formats.
+Supports client and server side pagination; client and server side search; custom filters views; automatic menu to hide columns and support for custom tools. Client side export feature into: csv, json, xml, Excel xlsx (using plugin) formats.
 
 [![Live demo](https://robertoprevato.github.io/demos/kingtable/images/demo.gif)](https://robertoprevato.github.io/demos/kingtable/colors.html)
 
