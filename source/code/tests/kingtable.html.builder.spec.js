@@ -122,4 +122,23 @@ describe("KingTableHtmlBuilder", () => {
     var html = a.highlight(text, pattern);
     expect(html).toEqual(`<span class="kt-search-highlight">Bar</span>łysławłłł`);
   })
+
+  it("must support diacritics, properly highlight Chinese characters", () => {
+    var a = new KingTableHtmlBuilder();
+    var text = "2017年12月31日";
+    var pattern = /日/gim;
+
+    var html = a.highlight(text, pattern);
+    expect(html).toEqual(`2017年12月31<span class="kt-search-highlight">日</span>`);
+  })
+
+  it("must support diacritics, properly highlight non-Chinese characters in Chinese characters string", () => {
+    var a = new KingTableHtmlBuilder();
+    var text = "2017年12月31日";
+    var pattern = /12/gim;
+
+    var html = a.highlight(text, pattern);
+    expect(html).toEqual(`2017年<span class="kt-search-highlight">12</span>月31日`);
+  })
+
 });

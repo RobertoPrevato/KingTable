@@ -150,25 +150,33 @@ Cat`
     var diacritics = [
       {i: 0, v: 'Ż'}, {i: 10, v: 'ę'}, {i: 14, v: 'ą'}, {i: 15, v: 'ż'}
     ];
-    
+
     expect(S.restoreDiacritics(a, diacritics)).toEqual("Żelazowskięasdąż")
   })
 
   it("must allow to restore diacritics in strings, with offset", () => {
     var a = "Henrik Nordvargr Björkk"
     var diacritics = [{i: 19, v: "ö"}];
-    
+
     var portion = "Bjorkk";
     var offset = a.indexOf("B");
     expect(S.restoreDiacritics(portion, diacritics, offset)).toEqual("Björkk")
   })
 
+  it("must not find Chinese characters when find diacritics in strings", () => {
+    var a = "2017年12月31日"
+    var diacritics = S.findDiacritics(a)
+
+    expect(diacritics).toEqual([])
+  })
+
   it("must allow to find diacritics in strings", () => {
     var a = "Żelazowskięasdąż"
     var diacritics = S.findDiacritics(a)
-    
+
     expect(diacritics).toEqual([
       {i: 0, v: 'Ż'}, {i: 10, v: 'ę'}, {i: 14, v: 'ą'}, {i: 15, v: 'ż'}
     ])
   })
+
 });

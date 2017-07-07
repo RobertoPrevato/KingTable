@@ -40,10 +40,12 @@ export default {
     var rx = /[^\u0000-\u007E]/gm;
     var a = [], m;
     while (m = rx.exec(s)) {
-      a.push({
-        i: m.index,
-        v: m[0]
-      });
+      if (normalize(m[0]) != m[0]){
+        a.push({
+          i: m.index,
+          v: m[0]
+        });
+      }
     }
     return a;
   },
@@ -181,7 +183,7 @@ export default {
   /**
    * Returns a value indicating whether the given string starts with the second
    * given string.
-   * 
+   *
    * @param {string} String to check
    * @param {string} Start value
    * @param {boolean} Case insensitive?
