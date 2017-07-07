@@ -1,5 +1,7 @@
 import server
 import unittest
+from flask import json
+
 
 
 class ServerTestCase(unittest.TestCase):
@@ -18,12 +20,11 @@ class ServerTestCase(unittest.TestCase):
         """
         #print("end..")
 
-    def test_hello_world(self):
-        print("Hello World!")
-        assert True == True
-        
     def test_homepage(self):
         rv = self.app.get('/')
-        #print(rv.data)
-        print("Hello World!")
-        assert "<title>" in rv.data
+        assert b'<title>' in rv.data
+
+    def test_api(self):
+        rv = self.app.get('/api/colors?page=1&search=%&size=30&timestamp=2017-07-06T17%3A54%3A17.653Z')
+        data = json.loads(rv.data)
+        assert data["total"] == 1247
