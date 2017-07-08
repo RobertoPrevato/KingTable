@@ -10,7 +10,7 @@ class ListUtils:
     def parse_sort_by(s):
         """
         Parses a sort by string, converting it into an array of arrays.
-        
+
         :param s: sort by string
         """
         if not s:
@@ -85,6 +85,7 @@ class ListUtils:
                     # TODO: support better non-strings with their culture-dependent representations
                     if rx.search(item[x]):
                         result.append(item)
+                        break
             else:
                 for p in properties:
                     if rx.search(item[p]):
