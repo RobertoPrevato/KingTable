@@ -66,7 +66,11 @@ function lookSortableAsNumber(s) {
     }
     // Numbers are checked only if there is a single match in the string.
     // how many digits compared to other letters?
-    var nonNumbers = s.match(/[^0-9\.\,\s]/g).length;
+    var nonNumbersMatch = s.match(/[^0-9\.\,\s]/g);
+    
+    if (!nonNumbersMatch) return parseAnyNumber(s); // string contains only numbers
+
+    var nonNumbers = nonNumbersMatch.length;
     if (nonNumbers > 6) {
       // there are too many characters that are not numbers or separators;
       // the string must be most probably sorted in alphabetical order

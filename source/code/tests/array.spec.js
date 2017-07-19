@@ -686,6 +686,9 @@ describe("Array utilities", () => {
 
     a = A.lookSortableAsNumber("40.00 $ 20.00 $")
     expect(a).toEqual(false, "'40.00 $ 20.00 $' should not be sorted as a number, because it contains more than one number")
+
+    a = A.lookSortableAsNumber("931")
+    expect(a).toEqual(931, "'931' is sortable as a number")
   })
 
   it("must allow to search objects by string property", () => {
