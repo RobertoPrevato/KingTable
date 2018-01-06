@@ -24,6 +24,30 @@ Note how filters are automatically persisted upon page refresh. For example, usi
 
 **NB:** all these demos are [*fixed tables*](https://github.com/RobertoPrevato/KingTable/wiki/Working-modes#fixed-mode): tables that have all information loaded in memory, paginated and filtered on the client side. To see examples of tables paginated using AJAX requests (on the server side), see the [dedicated documentation](https://github.com/RobertoPrevato/KingTable/wiki/How-to-integrate-in-your-project#how-to-integrate-with-server-side-code) and [development server](https://github.com/RobertoPrevato/KingTable/tree/master/servers/flask) provided in the repository.
 
+## Install using npm
+KingTable library can be installed using npm.
+```bash
+npm install kingtable
+```
+
+Modules can then be imported using CommonJS syntax:
+```js
+var KingTable = require("kingtable")
+var KingTableUtils = require("kingtable/utils")
+```
+
+Or ES6 import syntax:
+```js
+import KingTable from "kingtable"
+import KingTableUtils from "kingtable/utils"
+```
+
+## Use downloading distribution files
+KingTable library can be used downloading and using distribution files, in `dist` folder.
+```html
+<script src="kingtable.js"></script>
+```
+
 ## Themes
 [![Live demo - themes](https://robertoprevato.github.io/demos/kingtable/images/themes.gif)](https://robertoprevato.github.io/demos/kingtable/colors.html)
 

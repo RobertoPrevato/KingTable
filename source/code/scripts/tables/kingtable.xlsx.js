@@ -2,7 +2,7 @@
  * KingTable plugin for Excel client side export using SheetJS/js-xlsx library
  * https://github.com/RobertoPrevato/KingTable
  *
- * Copyright 2017, Roberto Prevato
+ * Copyright 2018, Roberto Prevato
  * https://robertoprevato.github.io
  *
  * Licensed under the MIT license:

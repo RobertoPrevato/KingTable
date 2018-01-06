@@ -1,0 +1,33 @@
+{
+  "name": "kingtable",
+  "description": "Library for administrative tables that are able to build themselves, on the basis of the input data.",
+  "version": "2.0.0",
+  "homepage": "https://github.com/RobertoPrevato/KingTable",
+  "main": "./kingtable-entry.js",
+  "files": [
+    "kingtable-entry.js",
+    "utils.js",
+    "src"
+  ],
+  "author": {
+    "name": "Roberto Prevato",
+    "email": "roberto.prevato@gmail.com",
+    "url": "https://robertoprevato.github.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RobertoPrevato/KingTable"
+  },
+  "bugs": {
+    "url": "https://github.com/RobertoPrevato/KingTable/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/RobertoPrevato/KingTable/blob/master/LICENSE"
+    }
+  ],
+  "keywords": [
+    "admin tables kingtable"
+  ]
+}

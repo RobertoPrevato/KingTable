@@ -3,7 +3,7 @@
  * Offers methods to handle pagination of items and page number.s
  * https://github.com/RobertoPrevato/KingTable
  *
- * Copyright 2017, Roberto Prevato
+ * Copyright 2018, Roberto Prevato
  * https://robertoprevato.github.io
  *
  * Licensed under the MIT license:

@@ -2,7 +2,7 @@
  * KingTable colors test data.
  * https://github.com/RobertoPrevato/KingTable
  *
- * Copyright 2017, Roberto Prevato
+ * Copyright 2018, Roberto Prevato
  * http://ugrose.com
  *
  * Licensed under the MIT license:

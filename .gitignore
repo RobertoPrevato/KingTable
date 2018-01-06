@@ -45,3 +45,7 @@ demos/*
 
 /servers/flask/.vscode*
 /servers/flask/.idea*
+
+*.tgz
+
+src

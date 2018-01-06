@@ -2,7 +2,7 @@
  * KingTable menu core functions.
  * https://github.com/RobertoPrevato/KingTable
  *
- * Copyright 2017, Roberto Prevato
+ * Copyright 2018, Roberto Prevato
  * https://robertoprevato.github.io
  *
  * Licensed under the MIT license:
